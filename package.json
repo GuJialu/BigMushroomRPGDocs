@@ -1,0 +1,19 @@
+{
+  "name": "project0Docs",
+  "version": "0.0.1",
+  "description": "docs for big-mushroom-rpg",
+  "main": "index.js",
+  "authors": {
+    "name": "theRealBigMushroom",
+    "email": ""
+  },
+  "repository": "/project0Docs",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  }
+}
