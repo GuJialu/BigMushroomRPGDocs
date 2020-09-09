@@ -32,9 +32,10 @@ module.exports = {
     docsDir: '',
     editLinkText: '',
     lastUpdated: false,
+    sidebarDepth: 2,
     nav: [
       {
-        text: 'Guide',
+        text: '文档',
         link: '/guide/',
       },
       {
@@ -49,11 +50,21 @@ module.exports = {
     sidebar: {
       '/guide/': [
         {
-          title: 'Guide',
+          title: '文档',
           collapsable: false,
           children: [
             '',
-            'using-vue',
+            'storyboard',
+            'character',
+            'map',
+            'act',
+            'spell',
+            'passive',
+            'spell-unit',
+            'item',
+            'note',
+            'act-element',
+            'combat'
           ]
         }
       ],
