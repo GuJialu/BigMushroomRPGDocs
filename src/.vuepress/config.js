@@ -58,12 +58,12 @@ module.exports = {
             'character',
             'map',
             'act',
+            'act-element',
             'spell',
             'passive',
             'spell-unit',
             'item',
             'note',
-            'act-element',
             'combat'
           ]
         }
