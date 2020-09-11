@@ -10,7 +10,7 @@ module.exports = {
    */
   description: description,
 
-  base: '/BigMushroomRPGDocsDeploy/',
+  base: '/DocsBigMushroomRPG/',
 
   /**
    * Extra tags to be injected to the page HTML `<head>`
