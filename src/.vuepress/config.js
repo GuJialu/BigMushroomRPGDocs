@@ -4,7 +4,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: 'Vuepress Docs Boilerplate',
+  title: '大蘑菇RPG',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -41,11 +41,11 @@ module.exports = {
         link: '/guide/',
       },
       {
-        text: 'Config',
-        link: '/config/'
+        text: '下载',
+        link: '/release/'
       },
       {
-        text: 'VuePress',
+        text: 'Steam',
         link: 'https://v1.vuepress.vuejs.org'
       }
     ],
