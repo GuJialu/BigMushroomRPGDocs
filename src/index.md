@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://v1.vuepress.vuejs.org/hero.png
+heroImage: /logo.png
 tagline: docs for big-mushroom-rpg
 actionText: 开始使用 →
 actionLink: /guide/
