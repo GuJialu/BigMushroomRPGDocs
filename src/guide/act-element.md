@@ -1,5 +1,5 @@
 # 剧情元素
-![剧情元素](../../assets/t.jpg)
+![剧情元素](../../assets/act-element.jpg)
 
 ## 激活条件
 激活一个[条件](./act.html#条件)
