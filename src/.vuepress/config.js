@@ -66,7 +66,8 @@ module.exports = {
             'spell-unit',
             'item',
             'note',
-            'combat'
+            'combat',
+            'customize'
           ]
         }
       ],
