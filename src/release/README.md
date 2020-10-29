@@ -7,3 +7,7 @@
 
 ## 下载免费版
 - github release
+
+##
+施工中，下载链接暂时无效。。Ծ‸Ծ
+![logo](../../assets/libhero.jpg)

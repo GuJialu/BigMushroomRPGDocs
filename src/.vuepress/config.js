@@ -46,7 +46,7 @@ module.exports = {
       },
       {
         text: 'Steam',
-        link: 'https://v1.vuepress.vuejs.org'
+        link: ''
       }
     ],
     sidebar: {
