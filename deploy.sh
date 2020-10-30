@@ -23,3 +23,8 @@ git commit -m 'deploy'
 git push -f https://github.com/GuJialu/DocsBigMushroomRPG.git master:gh-pages
 
 cd -
+
+# go to aliyun, run
+# cd /data/www
+# rm DocsBigMushroomRPG -r
+# git clone https://github.com/GuJialu/DocsBigMushroomRPG.git
