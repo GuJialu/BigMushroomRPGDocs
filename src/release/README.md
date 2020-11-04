@@ -7,7 +7,7 @@
 - 有资金就可以购买美术音乐素材制作官方剧本，官方剧本的素材也可以免费分享给大家使用！
 
 ## 下载免费版
-- [github release](https://github.com/GuJialu/BigMushroomRPGBuild/releases/download/v0.1-alpha/build40.zip)
+- github release
 
 ##
 ![logo](../../assets/libhero.jpg)
