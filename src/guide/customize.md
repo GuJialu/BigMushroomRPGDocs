@@ -2,8 +2,8 @@
 更换游戏主页图片和加载图片，屏蔽编辑器和剧本选择来客制化您的游戏便于发布
 
 ## 更换游戏主题图
-- 进入`streamingAssets/config/`文件夹
-- 将主题图片拖动至`streamingAssets/config/`并重命名为cover(图片后缀不变)
+- 进入进入程序文件夹内`BigMushroomRPG_Data/streamingAssets/config/`文件夹。（程序文件夹路径可在[素材路径](./storyboard.html#素材路径)中查看）
+- 将主题图片拖动至`BigMushroomRPG_Data/streamingAssets/config/`并重命名为cover(图片后缀不变)
 - 重新启动游戏，游戏主页图片和加载图片会被替换为cover
 
 :::tip

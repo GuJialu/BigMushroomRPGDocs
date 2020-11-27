@@ -46,7 +46,7 @@ module.exports = {
       },
       {
         text: 'Steam',
-        link: ''
+        link: 'https://store.steampowered.com/app/1433520/RPG/'
       }
     ],
     sidebar: {
@@ -67,7 +67,8 @@ module.exports = {
             'item',
             'note',
             'combat',
-            'customize'
+            'customize',
+            'template'
           ]
         }
       ],
