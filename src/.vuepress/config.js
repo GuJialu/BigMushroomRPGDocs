@@ -68,6 +68,7 @@ module.exports = {
             'note',
             'combat',
             'deck',
+            'skin',
             'customize',
             'template'
           ]
