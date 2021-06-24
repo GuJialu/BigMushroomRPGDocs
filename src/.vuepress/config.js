@@ -70,7 +70,8 @@ module.exports = {
             'deck',
             'skin',
             'customize',
-            'template'
+            'template',
+            'storytelling'
           ]
         }
       ],
