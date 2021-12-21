@@ -5,10 +5,7 @@
 - 或steam搜索“大蘑菇RPG”
 - 支持作者
 - 自动更新
-- 有资金就可以购买美术音乐素材制作官方剧本，官方剧本的素材也可以免费分享给大家使用！
-
-## 下载免费版
-- [github release](https://github.com/GuJialu/BigMushroomRPGBuild/releases/download/v0.1/bigmushroomrpg40.zip)
+- 有资金就可以购买美术音乐素材制作官方剧本，官方剧本素材中可2次发布的部分也可以免费分享给大家使用！
 
 ##
 ![logo](../../assets/libhero.jpg)
