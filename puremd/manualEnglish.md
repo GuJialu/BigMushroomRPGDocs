@@ -1,3 +1,29 @@
+# Mushroom Card RPG Manual
+
+<br>
+
+# Content
+- [StroyBoard](#storyboard)
+- [Act](#act)
+- [Act Element](#act-element)
+- [Marco](#Marco)
+- [Character](#character)
+- [Item](#item)
+- [Map](#map)
+- [Spell](#spell)
+- [Passive](#passive)
+- [Spell Element](#spell-element)
+- [Combat system](#combat-system)
+- [Combat ai](#combat-ai)
+- [Deck](#deck)
+- [Customize and Publish](#customize-and-publish)
+- [Template Script](#template-script)
+
+<br>
+<br>
+<br>
+<br>
+
 # StoryBoard
 
 ## Keys
@@ -85,106 +111,108 @@ Includes talking to character, entering area, character HP=0, etc. If an act is 
 
 # Act Element
 
-## 激活条件
-激活一个[自定义条件](#条件)
+## Activate Self-defined Condition
+Activate a [self-defined condition](#Condition)
 
-## 移除条件
-移除一个[条件](#条件)
+## Deactivate Self-defined Condition
+Deactivate a [self-defined condition](#Condition)
 
-## 激活剧目
-激活一个[剧目](./#剧目)，使其进入可激发态
-## 增加计数
-增加一个计数器的值，用于[条件](./act.html#条件)判断
+## Activate Act
+Activate an [Act](./#Act) see [Active State](#active-state).
+## ±Counter
+± the value of a [counter](#condition)
+## Set Counter
+Set the value of a [counter](#condition)
 
-## 选项
-给玩家选择的选项
-- `点击编辑`
-- `点击“+”按钮添加选项`
-- `输入选项内容`
-- `使用箭头连接该选项激活的剧目`
+## Options
+Show options for player to choose
+- `click "+" to add option`
+- `enter option name`
+- `connect the option to the act it activates`
 
-## 传送人物
-瞬间传送某个[人物](./character.html)到某个[地点](#地点)
->可通过传送主角实现地图间的切换
+## Teleport Character
+Teleport a [Character](#character) to some [Area](#area)
+>Teleport the hero to switch between maps
 
-## 移动人物
-移动某个[人物](./character.html)到某个[地点](#地点)，人物和地点需在同一张地图上。
->人物会随机移动到目的地地点范围内的某个点上，因此可以用目的地地点范围的大小来调节移动路径的随机性
+## Move Character
+Move a [Character](#character) to some [Area](#area)
+>Character will move to a random point inside the range of the area. Adjust the size of the area to add randomness for the movement.
 
-## 人物跟随人物
-某个[人物](./character.html)成为某个人物的[随从](#随从)
+## Character Follow Character
+A [Character](#character) becomes another character's [Follower](#follower)
 
-## 人物停止跟随人物
-某个[人物](./character.html)停止成为某个人物的[随从](#随从)
+## Character Stop Following Character
+A [Character](#character) stop being another character's [Follower](#follower)
 
-## 改变人物立绘
+## Change Character Image
 
-## 对话
-- `点击编辑`
-- `点击“+”按钮添加对话`
-- `输入说话人物名字`
-- `输入说话内容`
-- `输入配音音频文件名（可选）`
-- `输入自动跳过时间（不填则为鼠标点击/空格跳过）`
-- `输入特殊立绘图片名（可选）`
+## Dialogue
+- `click to edit`
+- `click "+" to add new dialogue`
+- `enter speaker name`
+- `enter dialog content`
+- `enter dubbing audio file`
+- `enter auto skip countdown time (click/space to skip if empty)`
+- `special speaker image file (optional)`
 
-## 展示图片
-展示图片，点击跳过
+## Show Image
+Click/space to skip
 
-## 展示背景
-展示一张图片，只能被[移除背景](#移除背景)移除。
+## Show background
+Show background, can only be skipped by Remove Background
 
-## 移除背景
-移除当前展示的背景。
+## Remove Background
+Remove current background
 
-## 更换BGM
-不填为停止播放当前BGM
+## BGM
+If leave empty, stop playing current BGM
 
-## 交易
->交易中购买物品需支付等于物品价值的金钱，出售则获得物品价值80%的金钱
+## Transaction
+>hero sales item with 80% original item value
 
-## 获得金钱
-某个[人物](./character.html)获得金钱
-## 获得物品
-某个[人物](./character.html)获得[物品](./item.html)
-## 失去物品
-某个[人物](./character.html)失去[物品](./item.html)
-## 获得并装备物品
-某个[人物](./character.html)获得并装备[物品](./item.html)，如果装备槽位已有装备，则旧装备放回背包中
-## 停止装备物品
-某个[人物](./character.html)停止装备[物品](./item.html)，并放回背包中
-## 交付金钱物品
-请求主角交付金钱或物品
-## 战斗
-展开[战斗](./combat.html)
-## 脱离当前战斗
-## 获得技能
-## 失去技能
-## 援兵
-给当前进行中的战斗添加援兵
+## Gain Money
+A [Character](#character) gain money
+## Gain Item
+A [Character](#character) gain [Item](#item)
+## Loss Item
+A [Character](#character) loss [Item](#item)
+## Gain and equip item
+A [Character](#character) gain and equip [Item](#item)
+## Stop equip to item
+A [Character](#character) stop to equip [Item](#item)
+## Give Money/Item
+Hero give out money/item to a character. Success and failing activates act respectively.
+## Combat
+see[Combat](#combat-system). Winning and losing activates act respectively.
 
-## 切换主角
-将某个[人物](./character.html)切换为主角
->切换主角后注意保证主角相关剧目的正常触发，见[主角代号](./character.html#主角代号) 
+## Quit current combat
+## Gain Spell
+## Loss Spell
+## Reinforcement
+Reinforcement for current combat.
 
-## 杀死人物
-## 复活人物
-## 更换地图图片
-## 修改景物图片
-不填为移除景物当前的图片
-## 激活障碍
-## 禁用障碍
-## 移动相机到地点
-## 复位相机
-## 震动相机
-## 轨迹特效
-## 特效
-## 地图上展示图片
-## 抵近目标
-## 显示队友
-在主角位置显示队友
-## 停止显示队友
-停止在主角位置显示队友
+## Switch Hero
+Change the hero to be another character
+>Make sure hero related acts trigger correctly after hero switching, see[Hero Code](#hero-code) 
+
+## Kill Character
+## Resurrect Character
+## Change Map Image
+## Change Scenery Image
+Remove the scenery image if empty
+## Enable obstacle
+## Disable obstacle
+## Move Camera to Area
+## Restore Camera
+## Shake Camera
+## Trace Effect
+## VFX
+## Image on map
+## Close to target
+## Show Teammate
+Show hero's follower in the hero's position
+## Stop Showing Teammate
+Stop showing hero's follower in the hero's position
 
 <br>
 <br>
@@ -432,20 +460,22 @@ Random Deck of character/area/item, refer it by deck name.
 ## Example
 
 ### Random prize
-- |Deck name: prize|
-  - |crappy sword  probability: 0.99|
-  - |luxury sword  probability: 0.01| 
+| Deck name: prize||
+| --- | --- |
+| crappy sword | probability: 0.99|
+| luxury sword | probability: 0.01| 
 
-- [act element](#act-element)：[Gain Item](#gain-item) "prize"
-  - When executing this act element, there is 99% probability to get a crappy sword and 1% probability to get a luxury sword
+[act element](#act-element)：[Gain Item](#gain-item) "prize"
+- When executing this act element, there is 99% probability to get a crappy sword and 1% probability to get a luxury sword
 
 ### Random Enemy
-- |Deck name: random enemy|
-  - |slime  probability: 0.99|
-  - |king slime  probability: 0.01|
+|Deck name: random enemy||
+| --- | --- |
+|slime | probability: 0.99|
+|king slime | probability: 0.01|
 
-- [Act Element](#act-element)：[Combat](#Combat) enemy: random enemy
-  - When executing this act element, there is 99% probability to combat with a slime and 1% probability to combat with a king slime
+[Act Element](#act-element)：[Combat](#Combat) enemy: random enemy
+- When executing this act element, there is 99% probability to combat with a slime and 1% probability to combat with a king slime
 
 <br>
 <br>
@@ -458,7 +488,7 @@ Add you own skin to the game ui, hide editor, and script selection to publish yo
 ## Skin system
 
 ### Game Skin
-- Go to `BigMushroomRPG_Data/streamingAssets/config/gameSkin` folder under game folder. (You can find its path in [Resource Path](#resource-path))
+- Go to `MushRoomCardRPG_Data/streamingAssets/config/gameSkin` folder under game folder. (You can find its path in [Resource Path](#resource-path))
 - Replace the images inside to change skin(keep the image name same, image format can be both jpg and png)
 - Restart the game
 
@@ -485,7 +515,7 @@ Add you own skin to the game ui, hide editor, and script selection to publish yo
 | weapon | weapon icon | 2.5 : 3.5 |
 
 #### Set Game Text Color
-- Go to `BigMushroomRPG_Data/streamingAssets/config/gameSkin` folder under game folder. (You can find its path in [Resource Path](#resource-path))
+- Go to `MushRoomCardRPG_Data/streamingAssets/config/gameSkin` folder under game folder. (You can find its path in [Resource Path](#resource-path))
 - Use notepad to open `config.json`
 - Modify "gameTextColor": [ R, G, B, A ]
     - R, red, range[0, 1]
@@ -496,7 +526,7 @@ Add you own skin to the game ui, hide editor, and script selection to publish yo
 - Restart the game
 
 ### Editor Skin
-- Go to `BigMushroomRPG_Data/streamingAssets/config/editorSkin` folder under game folder. (You can find its path in [Resource Path](#resource-path))
+- Go to `MushRoomCardRPG_Data/streamingAssets/config/editorSkin` folder under game folder. (You can find its path in [Resource Path](#resource-path))
 - Replace the images inside to change skin(keep the image name same, image format can be both jpg and png)
 - Restart the game
 
@@ -508,12 +538,12 @@ Add you own skin to the game ui, hide editor, and script selection to publish yo
 | cross | cross | 1 : 1 |
 | panel | 256px * 256px |
 
->button and panel should have the same resolution with the original image to display the border correctly.
+>Button and panel should have the same resolution with the original image to display the border correctly.
 
->background should be seamless texture
+>Background should be seamless texture
 
 #### Set Editor Text Color
-- Go to `BigMushroomRPG_Data/streamingAssets/config/` folder under game folder. (You can find its path in [Resource Path](#resource-path))
+- Go to `MushRoomCardRPG_Data/streamingAssets/config/` folder under game folder. (You can find its path in [Resource Path](#resource-path))
 - Use notepad to open `config.json`
 - Modify "editorTextColor": [ R, G, B, A ]
     - R, red, range[0, 1]
@@ -524,14 +554,14 @@ Add you own skin to the game ui, hide editor, and script selection to publish yo
 - Restart the game
 
 ## Hide Editor
-- Go to `BigMushroomRPG_Data/streamingAssets/config/` folder under game folder. (You can find its path in [Resource Path](#resource-path))
+- Go to `MushRoomCardRPG_Data/streamingAssets/config/` folder under game folder. (You can find its path in [Resource Path](#resource-path))
 - Use notepad to open `config.json`
 - Modify `disableEditor` to be 1
 - Restart the game
 
 ## Hide Script Selection
 If there is only one script in the game, you can hide it to let the player directly select saving.
-- Go to `BigMushroomRPG_Data/streamingAssets/config/` folder under game folder. (You can find its path in [Resource Path](#resource-path))
+- Go to `MushRoomCardRPG_Data/streamingAssets/config/` folder under game folder. (You can find its path in [Resource Path](#resource-path))
 - Use notepad to open `config.json`
 - Modify `disableScriptPicking` to be 1
 - Restart the game
@@ -546,5 +576,5 @@ If there is only one script in the game, you can hide it to let the player direc
 
 # Template Script
 Official Script for Reference
-- Go to `BigMushroomRPG_Data/streamingAssets/template/` folder under game folder. (You can find its path in [Resource Path](#resource-path))
-- Copy the scripts inside into `BigMushroomRPG_Data/streamingAssets/myStories/`
+- Go to `MushRoomCardRPG_Data/streamingAssets/template/` folder under game folder. (You can find its path in [Resource Path](#resource-path))
+- Copy the scripts inside into `MushRoomCardRPG_Data/streamingAssets/myStories/`

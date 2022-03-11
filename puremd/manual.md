@@ -1,3 +1,30 @@
+# 蘑菇牌RPG 说明书
+
+<br>
+
+# 目录
+- [故事板](#故事板)
+- [剧目](#剧目)
+- [剧情元素](#剧情元素)
+- [宏](#宏)
+- [人物](#人物)
+- [物品](#物品)
+- [地图](#地图)
+- [技能](#技能)
+- [被动](#被动)
+- [技能元素](#技能元素)
+- [战斗系统](#战斗系统)
+- [战斗AI](#战斗AI)
+- [卡池](#卡池)
+- [客制化与发布](#客制化与发布)
+- [官方模板剧本](#官方模板剧本)
+
+<br>
+<br>
+<br>
+<br>
+
+
 # 故事板
 
 ## 按键操作
@@ -160,9 +187,9 @@
 ## 停止装备物品
 某个[人物](#人物)停止装备[物品](#物品)，并放回背包中
 ## 交付金钱物品
-请求主角交付金钱或物品
+请求主角交付金钱或物品， 成功或失败都可激活剧目
 ## 战斗
-展开[战斗](#战斗)
+展开[战斗](#战斗系统)，胜利或失败都可激活剧目
 ## 脱离当前战斗
 ## 获得技能
 ## 失去技能
@@ -440,21 +467,22 @@
 ## 例子
 
 ### 随机物品奖励
-- |卡池名字: 随机奖励|
-  - |弯曲的皮甲  概率：0.99|
-  - |豪华的皮甲  概率：0.01| 
+|卡池名字: 随机奖励||
+| --- | --- |
+|弯曲的皮甲 | 概率：0.99|
+|豪华的皮甲 | 概率：0.01| 
 
-- [剧情元素](./act-element.html)：[获得物品](./act-element.html#获得物品) “随机奖励”
-
-  - 在执行该剧情元素有99%的概率获得弯曲的皮甲，1%的概率获得豪华的皮甲。
+[剧情元素](./act-element.html)：[获得物品](./act-element.html#获得物品) “随机奖励”
+- 在执行该剧情元素有99%的概率获得弯曲的皮甲，1%的概率获得豪华的皮甲。
 
 ### 随机人物
-- |卡池名字: 随机敌人|
-  - |史莱姆  概率：0.99|
-  - |史莱姆王  概率：0.01| 
+|卡池名字: 随机敌人||
+| --- | --- |
+|史莱姆 | 概率：0.99|
+|史莱姆王 | 概率：0.01| 
 
-- [剧情元素](./act-element.html)：[战斗](./act-element.html#战斗)， 敌方首领：“随机敌人”
-  - 在执行该剧情元素有99%的概率和史莱姆战斗，1%的概率和史莱姆王战斗。
+[剧情元素](./act-element.html)：[战斗](./act-element.html#战斗)， 敌方首领：“随机敌人”
+- 在执行该剧情元素有99%的概率和史莱姆战斗，1%的概率和史莱姆王战斗。
 
 <br>
 <br>
@@ -466,7 +494,7 @@
 
 ## 皮肤系统
 ### 游戏UI皮肤
-- 进入进入程序文件夹内`BigMushroomRPG_Data/streamingAssets/config/gameSkin`文件夹。（程序文件夹路径可在[素材路径](./storyboard.html#素材路径)中查看）
+- 进入进入程序文件夹内`MushRoomCardRPG_Data/streamingAssets/config/gameSkin`文件夹。（程序文件夹路径可在[素材路径](./storyboard.html#素材路径)中查看）
 - 替换文件夹内的图片来更换皮肤(图片名字不变，后缀是jpg或png都可以)
 - 重新启动游戏
 
@@ -493,7 +521,7 @@
 | weapon | 武器装备槽 | 2.5 : 3.5 |
 
 #### 游戏文字颜色
-- 进入进入程序文件夹内`BigMushroomRPG_Data/streamingAssets/config/`文件夹。（程序文件夹路径可在[素材路径](./storyboard.html#素材路径)中查看）
+- 进入进入程序文件夹内`MushRoomCardRPG_Data/streamingAssets/config/`文件夹。（程序文件夹路径可在[素材路径](./storyboard.html#素材路径)中查看）
 - 使用文本编辑器打开`config.json`
 - 修改 "gameTextColor": [ R, G, B, A ]
     - R为红色，允许值[0, 1]
@@ -504,7 +532,7 @@
 - 重新启动游戏
 
 ### 编辑器UI皮肤
-- 进入进入程序文件夹内`BigMushroomRPG_Data/streamingAssets/config/editorSkin`文件夹。（程序文件夹路径可在[素材路径](./storyboard.html#素材路径)中查看）
+- 进入进入程序文件夹内`MushRoomCardRPG_Data/streamingAssets/config/editorSkin`文件夹。（程序文件夹路径可在[素材路径](./storyboard.html#素材路径)中查看）
 - 替换文件夹内的图片来更换皮肤(图片名字不变，后缀是jpg或png都可以)
 - 重新启动游戏
 
@@ -523,7 +551,7 @@
 >背景为重复平铺图片，尺寸越大重复密度越小
 
 #### 剧本编辑器文字颜色
-- 进入进入程序文件夹内`BigMushroomRPG_Data/streamingAssets/config/`文件夹。（程序文件夹路径可在[素材路径](./storyboard.html#素材路径)中查看）
+- 进入进入程序文件夹内`MushRoomCardRPG_Data/streamingAssets/config/`文件夹。（程序文件夹路径可在[素材路径](./storyboard.html#素材路径)中查看）
 - 使用文本编辑器打开`config.json`
 - 修改 "editorTextColor": [ R, G, B, A ]
     - R为红色，允许值[0, 1]
@@ -534,7 +562,7 @@
 - 重新启动游戏
 
 ## 屏蔽编辑器
-- 进入程序文件夹内`BigMushroomRPG_Data/streamingAssets/config/`文件夹
+- 进入程序文件夹内`MushRoomCardRPG_Data/streamingAssets/config/`文件夹
 - 使用文本编辑器打开`config.json`
 - 将`disableEditor`值改为1
 - 重新启动游戏
@@ -542,13 +570,13 @@
 ## 屏蔽剧本选择
 如果游戏只有一个剧本，可以屏蔽剧本选择让玩家直接进入存档选择
 - 把多余的剧本删掉只留下一个需要的剧本
-- 进入程序文件夹内`BigMushroomRPG_Data/streamingAssets/config/`文件夹
+- 进入程序文件夹内`MushRoomCardRPG_Data/streamingAssets/config/`文件夹
 - 使用文本编辑器打开`config.json`
 - 将`disableScriptPicking`值改为1
 - 重新启动游戏
 
 ## 费用和版权
-发布使用大蘑菇RPG制作的游戏是免费的，大蘑菇RPG只是制作工具，不占有使用其制作的游戏的版权
+发布使用蘑菇牌RPG制作的游戏是免费的，蘑菇牌RPG只是制作工具，不占有使用其制作的游戏的版权
 
 <br>
 <br>
@@ -558,5 +586,5 @@
 # 官方模板剧本
 官方提供的剧本案例，可以学习参考
 
-- 进入进入程序文件夹内`BigMushroomRPG_Data/streamingAssets/template/`文件夹。（程序文件夹路径可在[素材路径](./storyboard.html#素材路径)中查看）
-- 将其中的剧本复制到`BigMushroomRPG_Data/streamingAssets/myStories/`
+- 进入进入程序文件夹内`MushRoomCardRPG_Data/streamingAssets/template/`文件夹。（程序文件夹路径可在[素材路径](./storyboard.html#素材路径)中查看）
+- 将其中的剧本复制到`MushRoomCardRPG_Data/streamingAssets/myStories/`
