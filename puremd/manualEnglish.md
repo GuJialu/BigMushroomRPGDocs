@@ -6,6 +6,7 @@
 - [StroyBoard](#storyboard)
 - [Act](#act)
 - [Act Element](#act-element)
+- [Act Condition region](#act-condition-region)
 - [Marco](#Marco)
 - [Character](#character)
 - [Item](#item)
@@ -213,6 +214,17 @@ Remove the scenery image if empty
 Show hero's follower in the hero's position
 ## Stop Showing Teammate
 Stop showing hero's follower in the hero's position
+
+<br>
+<br>
+<br>
+<br>
+
+# Act Condition Region
+All acts inside a condition region will have the act conditions of that region. This is useful when you want the act to only be active during a quest.
+## Creation
+- `right click` -> `Act Condition Region`
+- drag four corners to adjust the region.
 
 <br>
 <br>
@@ -444,38 +456,6 @@ When character armor reduces to 0, it stops action for 2 turns then recovers arm
 
 ## Creation
 - `right click menu` -> `Combat AI`
-
-<br>
-<br>
-<br>
-<br>
-
-# Deck
-Random Deck of character/area/item, refer it by deck name.
-
-## Creation
-- `right click menu` -> `Deck`
-- click +，add character/area/item name and corresponding probability(in decimal)
-
-## Example
-
-### Random prize
-| Deck name: prize||
-| --- | --- |
-| crappy sword | probability: 0.99|
-| luxury sword | probability: 0.01| 
-
-[act element](#act-element)：[Gain Item](#gain-item) "prize"
-- When executing this act element, there is 99% probability to get a crappy sword and 1% probability to get a luxury sword
-
-### Random Enemy
-|Deck name: random enemy||
-| --- | --- |
-|slime | probability: 0.99|
-|king slime | probability: 0.01|
-
-[Act Element](#act-element)：[Combat](#Combat) enemy: random enemy
-- When executing this act element, there is 99% probability to combat with a slime and 1% probability to combat with a king slime
 
 <br>
 <br>
