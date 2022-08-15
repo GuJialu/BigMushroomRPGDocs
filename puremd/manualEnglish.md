@@ -83,6 +83,16 @@ Includes talking to character, entering area, character HP=0, etc. If an act is 
 - Drag a line from the arrow to the left slot of act B.
 - The act B will be in inactive state(cannot be triggered) when game start. It will be activated once [Activated Act](#activated-Act) in act A is played.
 
+## && Switch
+- Add act element [Activated Act](#activated-act) in act A.
+- Drag a line from its arrow to the left slot of act C.
+- Add act element [Activated Act](#activated-act) in act B.
+- Drag a line from its arrow to the left slot of act C.
+- Click act C's left slot to turn on the && switch.
+- The act C will be in inactive state(cannot be triggered) when game start. It will be activated when both [Activated Acts](#activated-Act) in act A and B are played.
+- Click act C's left slot again to turn off the && switch.
+- Now the act will be activated when either [Activated Act](#activated-Act) in act A or B is played. 
+
 ## Act Loop
 - Single act loop
   - Add act element [Activated Act](#activated-act) in act A.
@@ -210,10 +220,6 @@ Remove the scenery image if empty
 ## VFX
 ## Image on map
 ## Close to target
-## Show Teammate
-Show hero's follower in the hero's position
-## Stop Showing Teammate
-Stop showing hero's follower in the hero's position
 
 <br>
 <br>
