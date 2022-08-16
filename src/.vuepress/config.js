@@ -4,7 +4,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: '大蘑菇RPG',
+  title: '蘑菇牌RPG',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -41,10 +41,6 @@ module.exports = {
         link: '/guide/',
       },
       {
-        text: '下载',
-        link: '/release/'
-      },
-      {
         text: 'Steam',
         link: 'https://store.steampowered.com/app/1433520/RPG/'
       }
@@ -52,26 +48,9 @@ module.exports = {
     sidebar: {
       '/guide/': [
         {
-          title: '文档',
           collapsable: false,
           children: [
             '',
-            'storyboard',
-            'character',
-            'map',
-            'act',
-            'act-element',
-            'spell',
-            'passive',
-            'spell-unit',
-            'item',
-            'note',
-            'combat',
-            'deck',
-            'skin',
-            'customize',
-            'template',
-            'storytelling'
           ]
         }
       ],
