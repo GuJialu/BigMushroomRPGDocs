@@ -1,0 +1,1093 @@
+<style>
+    html {
+        background-color: tan;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+        font-size: 14px;
+        line-height: 1.6;
+        padding-top: 1em;
+        margin: auto;
+        max-width: 20cm;
+    }
+
+    /* Reset margin top for elements */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    ol,
+    ul,
+    pre {
+        margin-top: 0;
+    }
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: normal;
+        margin-bottom: 0.2em;
+    }
+
+    #code-csp-warning {
+        position: fixed;
+        top: 0;
+        right: 0;
+        color: white;
+        margin: 16px;
+        text-align: center;
+        font-size: 12px;
+        font-family: sans-serif;
+        background-color: #444444;
+        cursor: pointer;
+        padding: 6px;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
+    }
+
+    #code-csp-warning:hover {
+        text-decoration: none;
+        background-color: #007acc;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, .25);
+    }
+
+    body.scrollBeyondLastLine {
+        margin-bottom: calc(100vh - 22px);
+    }
+
+    body.showEditorSelection .code-line {
+        position: relative;
+    }
+
+    body.showEditorSelection :not(tr).code-active-line:before,
+    body.showEditorSelection :not(tr).code-line:hover:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: -12px;
+        height: 100%;
+    }
+
+    body.showEditorSelection li.code-active-line:before,
+    body.showEditorSelection li.code-line:hover:before {
+        left: -30px;
+    }
+
+    .vscode-light.showEditorSelection .code-active-line:before {
+        border-left: 3px solid rgba(0, 0, 0, 0.15);
+    }
+
+    .vscode-light.showEditorSelection .code-line:hover:before {
+        border-left: 3px solid rgba(0, 0, 0, 0.40);
+    }
+
+    .vscode-light.showEditorSelection .code-line .code-line:hover:before {
+        border-left: none;
+    }
+
+    .vscode-dark.showEditorSelection .code-active-line:before {
+        border-left: 3px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .vscode-dark.showEditorSelection .code-line:hover:before {
+        border-left: 3px solid rgba(255, 255, 255, 0.60);
+    }
+
+    .vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+        border-left: none;
+    }
+
+    .vscode-high-contrast.showEditorSelection .code-active-line:before {
+        border-left: 3px solid rgba(255, 160, 0, 0.7);
+    }
+
+    .vscode-high-contrast.showEditorSelection .code-line:hover:before {
+        border-left: 3px solid rgba(255, 160, 0, 1);
+    }
+
+    .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+        border-left: none;
+    }
+
+    ul ul,
+    ul ol,
+    ol ul,
+    ol ol {
+        margin-bottom: 0;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    a {
+        color: #008051;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    a:focus,
+    input:focus,
+    select:focus,
+    textarea:focus {
+        outline: 1px solid -webkit-focus-ring-color;
+        outline-offset: -1px;
+    }
+
+    p {
+        margin-bottom: 0.7em;
+    }
+
+    ul,
+    ol {
+        margin-bottom: 0.7em;
+    }
+
+    hr {
+        border: 0;
+        height: 2px;
+        border-bottom: 2px solid;
+    }
+
+    h1 {
+        padding-bottom: 0.3em;
+        line-height: 1.2;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        font-weight: normal;
+    }
+
+    table {
+        border-collapse: collapse;
+        margin-bottom: 0.7em;
+    }
+
+    th {
+        text-align: left;
+        border-bottom: 1px solid;
+    }
+
+    th,
+    td {
+        padding: 5px 10px;
+    }
+
+    table>tbody>tr+tr>td {
+        border-top: 1px solid;
+    }
+
+    blockquote {
+        margin: 0 7px 0 5px;
+        padding: 0 16px 0 10px;
+        border-left-width: 5px;
+        border-left-style: solid;
+        border-color: #008051;
+    }
+
+    code {
+        font-family: var(--vscode-editor-font-family, "SF Mono", Monaco, Menlo, Consolas, "Ubuntu Mono", "Liberation Mono", "DejaVu Sans Mono", "Courier New", monospace);
+        font-size: 1em;
+        line-height: 1.357em;
+    }
+
+    body.wordWrap pre {
+        white-space: pre-wrap;
+    }
+
+    pre:not(.hljs),
+    pre.hljs code>div {
+        padding: 16px;
+        border-radius: 3px;
+        overflow: auto;
+    }
+
+    pre code {
+        color: var(--vscode-editor-foreground);
+        tab-size: 4;
+    }
+
+    /** Theming */
+
+    .vscode-light pre {
+        background-color: rgba(220, 220, 220, 0.4);
+    }
+
+    .vscode-dark pre {
+        background-color: rgba(10, 10, 10, 0.4);
+    }
+
+    .vscode-high-contrast pre {
+        background-color: var(--vscode-textCodeBlock-background);
+    }
+
+    .vscode-high-contrast h1 {
+        border-color: rgb(0, 0, 0);
+    }
+
+    .vscode-light th {
+        border-color: rgba(0, 0, 0, 0.69);
+    }
+
+    .vscode-dark th {
+        border-color: rgba(255, 255, 255, 0.69);
+    }
+
+    .vscode-light h1,
+    .vscode-light hr,
+    .vscode-light td {
+        border-color: rgba(0, 0, 0, 0.18);
+    }
+
+    .vscode-dark h1,
+    .vscode-dark hr,
+    .vscode-dark td {
+        border-color: rgba(255, 255, 255, 0.18);
+    }
+    .task-list-item {
+        list-style-type: none;
+    }
+
+    .task-list-item-checkbox {
+        margin-left: -20px;
+        vertical-align: middle;
+    }
+</style>
+<h1>蘑菇牌RPG 说明书</h1>
+<br>
+<h1>目录</h1>
+<ul>
+<li><a href="#%E4%B8%BB%E7%95%8C%E9%9D%A2">主界面</a></li>
+<li><a href="#%E6%95%85%E4%BA%8B%E6%9D%BF">故事板</a></li>
+<li><a href="#%E5%89%A7%E7%9B%AE">剧目</a></li>
+<li><a href="#%E5%89%A7%E6%83%85%E5%85%83%E7%B4%A0">剧情元素</a></li>
+<li><a href="#%E6%9D%A1%E4%BB%B6%E5%9F%9F">条件域</a></li>
+<li><a href="#%E5%AE%8F">宏</a></li>
+<li><a href="#%E4%BA%BA%E7%89%A9">人物</a></li>
+<li><a href="#%E7%89%A9%E5%93%81">物品</a></li>
+<li><a href="#%E5%9C%B0%E5%9B%BE">地图</a></li>
+<li><a href="#%E6%8A%80%E8%83%BD">技能</a></li>
+<li><a href="#%E8%A2%AB%E5%8A%A8">被动</a></li>
+<li><a href="#%E6%8A%80%E8%83%BD%E5%85%83%E7%B4%A0">技能元素</a></li>
+<li><a href="#%E6%88%98%E6%96%97%E7%B3%BB%E7%BB%9F">战斗系统</a></li>
+<li><a href="#%E6%88%98%E6%96%97AI">战斗AI</a></li>
+<li><a href="#%E5%AE%A2%E5%88%B6%E5%8C%96%E4%B8%8E%E5%8F%91%E5%B8%83">客制化与发布</a></li>
+<li><a href="#%E5%AE%98%E6%96%B9%E6%A8%A1%E6%9D%BF%E5%89%A7%E6%9C%AC">官方模板剧本</a></li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h1>主界面</h1>
+<p><img src="images/main.png" alt="main"></p>
+<ul>
+<li><code>剧本编辑</code>： 进入故事板编辑剧本</li>
+<li><code>开始游戏</code>： 游玩编辑好的剧本</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h1>故事板</h1>
+<p><img src="images/stroyboard.png" alt="storyboard"></p>
+<h2>按键操作</h2>
+<ul>
+<li><code>ctrl + 滚轮</code>： 缩放</li>
+<li><code>鼠标中键拖动</code>： 拖动故事板</li>
+<li><code>鼠标右键</code>： 呼出菜单</li>
+<li><code>鼠标左键</code>： 选中</li>
+<li><code>鼠标左键拖动</code>： 框选</li>
+<li><code>Ctrl + Z</code>：撤销</li>
+<li><code>Ctrl + Shift + Z</code> 或 <code>Ctrl + Y</code>：取消撤销</li>
+</ul>
+<h2>素材路径</h2>
+<p>游戏图片/音频素材请放入这个文件夹或它的子文件夹内。</p>
+<h2>主角名字</h2>
+<p>输入游戏主角名字（需有对应的<a href="#%E4%BA%BA%E7%89%A9">人物</a>在故事板中）</p>
+<h2>故事板分页</h2>
+<ul>
+<li>用于细分大的剧本，作用类似Excel中的sheet。</li>
+<li>点击&quot;+&quot;按钮新建分页</li>
+<li>拖动排序，分页位置越高其中<a href="#%E5%89%A7%E7%9B%AE">剧目</a>的<a href="#%E5%89%A7%E7%9B%AE%E4%BC%98%E5%85%88%E7%BA%A7">触发优先级</a>越高</li>
+<li>分页只是视觉效果，各分页的元素都是互通的</li>
+</ul>
+<h2>搜索</h2>
+<ul>
+<li>搜索将显示故事板中某个文案的所有出现位置</li>
+<li>点击搜索图标开始搜索，或选中文本后按<code>ctrl+f</code>搜索选中的文本</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h1>剧目</h1>
+<p><img src="images/act.png" alt="act"></p>
+<h2>触发方式</h2>
+<p>触发方式游戏中是触发剧目所需的方式，包括对话人物，进入地区等</p>
+<blockquote>
+<p>剧目触发过一次后不会再次触发（<a href="#%E7%8E%AF%E5%BD%A2%E6%B5%81%E7%A8%8B">环形流程</a>除外）</p>
+</blockquote>
+<blockquote>
+<p>人物血量≤和战斗进行到N回合往往需要搭配<a href="#%E6%9D%A1%E4%BB%B6">条件</a>使用，见<a href="#%E6%88%98%E6%96%97%E4%B8%AD%E5%89%A7%E6%83%85">战斗中剧情</a></p>
+</blockquote>
+<h2>条件</h2>
+<ul>
+<li>剧目触发需满足的条件，包括自定义，概率，计数器≥，人物拥有物品，人物拥有随从</li>
+<li>自定义条件可被<a href="#%E5%89%A7%E6%83%85%E5%85%83%E7%B4%A0">剧情元素</a>：<a href="#%E6%BF%80%E6%B4%BB%E6%9D%A1%E4%BB%B6">激活条件</a>激活</li>
+<li>已激活的自定义条件可被<a href="#%E5%89%A7%E6%83%85%E5%85%83%E7%B4%A0">剧情元素</a>：<a href="#%E7%A7%BB%E9%99%A4%E6%9D%A1%E4%BB%B6">移除条件</a>移除</li>
+<li>在条件前勾选NOT，表示否定，只有在该条件不成立时才能触发该剧目</li>
+</ul>
+<h2>剧目可激发态</h2>
+<ul>
+<li>游戏开始时所有没有前置<a href="#%E5%89%A7%E7%9B%AE%E8%BF%9E%E7%BA%BF">剧情连线</a>的剧目均处于可激发态</li>
+<li>剧目在执行后会进入不可激发态，处于不可激发态的剧目无法被触发</li>
+</ul>
+<h2>剧情</h2>
+<ul>
+<li>此剧目触发后播放的剧情</li>
+<li>由剧情元素队列组成，剧情元素包括人物对话，展示图片，战斗等。详见<a href="#%E5%89%A7%E6%83%85%E5%85%83%E7%B4%A0">剧情元素</a></li>
+<li>剧情元素由上往下依次播放，拖动可排序</li>
+</ul>
+<h2>剧目优先级</h2>
+<p>当两个不同剧目的触发方式和条件同时被满足时，会触发优先级更高的剧目。</p>
+<ul>
+<li>在单个<a href="#%E6%95%85%E4%BA%8B%E6%9D%BF%E5%88%86%E9%A1%B5">故事板分页</a>中，位置越高的剧目触发优先级越高。</li>
+<li>如有多个<a href="#%E6%95%85%E4%BA%8B%E6%9D%BF%E5%88%86%E9%A1%B5">故事板分页</a>，分页位置越高，其中剧目的触发优先级越高。</li>
+</ul>
+<h3>剧目连线</h3>
+<ul>
+<li><code>在一个剧目A中添加剧情元素</code><a href="#%E6%BF%80%E6%B4%BB%E5%89%A7%E7%9B%AE">激活剧目</a>（或<a href="#%E9%80%89%E9%A1%B9">选项</a>等其他有激活剧目箭头的剧情元素）</li>
+<li><code>拖动箭头&quot;&gt;&quot;，连接到另一个剧目B左边的接收槽&quot;&gt;&quot;</code></li>
+<li>游戏开始时剧目B将处于<a href="#%E5%89%A7%E7%9B%AE%E5%8F%AF%E6%BF%80%E5%8F%91%E6%80%81">不可激发态</a>。只有当剧目A的<a href="#%E6%BF%80%E6%B4%BB%E5%89%A7%E7%9B%AE">激活剧目</a>执行后剧目B才会进入<a href="#%E5%89%A7%E7%9B%AE%E5%8F%AF%E6%BF%80%E5%8F%91%E6%80%81">可激发态</a>。</li>
+</ul>
+<h2>&amp;&amp;开关</h2>
+<ul>
+<li><code>在一个剧目A中添加剧情元素</code><a href="#%E6%BF%80%E6%B4%BB%E5%89%A7%E7%9B%AE">激活剧目</a>（或<a href="#%E9%80%89%E9%A1%B9">选项</a>等其他有激活剧目箭头的剧情元素）</li>
+<li><code>拖动箭头&quot;&gt;&quot;，连接到另一个剧目C左边的接收槽&quot;&gt;&quot;</code></li>
+<li><code>在一个剧目B中添加剧情元素</code><a href="#%E6%BF%80%E6%B4%BB%E5%89%A7%E7%9B%AE">激活剧目</a>（或<a href="#%E9%80%89%E9%A1%B9">选项</a>等其他有激活剧目箭头的剧情元素）</li>
+<li><code>拖动箭头&quot;&gt;&quot;，连接到另一个剧目C左边的接收槽&quot;&gt;&quot;</code></li>
+<li><code>点击剧目C左边的接收槽&quot;&gt;&quot;， 打开&amp;&amp;开关</code></li>
+<li>游戏开始时剧目C将处于<a href="#%E5%89%A7%E7%9B%AE%E5%8F%AF%E6%BF%80%E5%8F%91%E6%80%81">不可激发态</a>。只有当剧目A和剧目B的<a href="#%E6%BF%80%E6%B4%BB%E5%89%A7%E7%9B%AE">激活剧目</a>都执行后剧目C才会进入<a href="#%E5%89%A7%E7%9B%AE%E5%8F%AF%E6%BF%80%E5%8F%91%E6%80%81">可激发态</a>。</li>
+<li><code>再次点击剧目C左边的接收槽&quot;&gt;&quot;， 关闭&amp;&amp;开关</code></li>
+<li>只要剧目A和剧目B的<a href="#%E6%BF%80%E6%B4%BB%E5%89%A7%E7%9B%AE">激活剧目</a>中的任意一个执行，剧目C就会进入<a href="#%E5%89%A7%E7%9B%AE%E5%8F%AF%E6%BF%80%E5%8F%91%E6%80%81">可激发态</a>。</li>
+</ul>
+<h3>环形流程</h3>
+<ul>
+<li>单剧目环：
+<ul>
+<li>剧目内部的剧目连线连接剧目自身的接收槽，该剧目可以反复触发。</li>
+</ul>
+</li>
+<li>多剧目环：
+<ul>
+<li>使用剧目连线将多个剧目连成一个环。</li>
+<li>新建一个入口剧目a并添加剧情元素`<a href="#%E6%BF%80%E6%B4%BB%E5%89%A7%E7%9B%AE">激活剧目</a>，将激活剧目的箭头连接到剧目环的起始剧目。</li>
+</ul>
+</li>
+</ul>
+<h2>底层机制</h2>
+<ul>
+<li>玩家在游戏中产生可能会触发剧情的交互（比如进入地区，对话）</li>
+<li>程序对剧本中所有剧目按<a href="#%E5%89%A7%E7%9B%AE%E4%BC%98%E5%85%88%E7%BA%A7">剧目优先级</a>依次检测</li>
+<li>如果该剧目
+<ol>
+<li>触发方式与玩家此次的交互一致</li>
+<li>是可激发态（见<a href="#%E5%89%A7%E7%9B%AE%E5%8F%AF%E6%BF%80%E5%8F%91%E6%80%81">剧目可激发态</a>）</li>
+<li>剧目条件均已满足</li>
+</ol>
+</li>
+<li>执行该剧目</li>
+<li>移除该剧目激活的激活状态</li>
+<li>停止向下检测</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h1>剧情元素</h1>
+<h2>激活条件</h2>
+<p>激活一个<a href="#%E6%9D%A1%E4%BB%B6">自定义条件</a></p>
+<h2>移除条件</h2>
+<p>移除一个<a href="#%E6%9D%A1%E4%BB%B6">条件</a></p>
+<h2>激活剧目</h2>
+<p>激活一个<a href="#%E5%89%A7%E7%9B%AE">剧目</a>，使其进入可激发态</p>
+<h2>增加计数</h2>
+<p>增加一个计数器的值，用于<a href="#%E6%9D%A1%E4%BB%B6">条件</a>判断</p>
+<h2>选项</h2>
+<p>给玩家选择的选项</p>
+<ul>
+<li><code>点击编辑</code></li>
+<li><code>点击“+”按钮添加选项</code></li>
+<li><code>输入选项内容</code></li>
+<li><code>使用箭头连接该选项激活的剧目</code></li>
+</ul>
+<h2>传送人物</h2>
+<p>瞬间传送某个<a href="#%E4%BA%BA%E7%89%A9">人物</a>到某个<a href="#%E5%9C%B0%E7%82%B9">地点</a></p>
+<blockquote>
+<p>可通过传送主角实现地图间的切换</p>
+</blockquote>
+<h2>移动人物</h2>
+<p>移动某个<a href="#%E4%BA%BA%E7%89%A9">人物</a>到某个<a href="#%E5%9C%B0%E7%82%B9">地点</a>，人物和地点需在同一张地图上。</p>
+<blockquote>
+<p>人物会随机移动到目的地地点范围内的某个点上，因此可以用目的地地点范围的大小来调节移动路径的随机性</p>
+</blockquote>
+<h2>人物跟随人物</h2>
+<p>某个<a href="#%E4%BA%BA%E7%89%A9">人物</a>成为某个人物的<a href="#%E9%9A%8F%E4%BB%8E">随从</a></p>
+<h2>人物停止跟随人物</h2>
+<p>某个<a href="#%E4%BA%BA%E7%89%A9">人物</a>停止成为某个人物的<a href="#%E9%9A%8F%E4%BB%8E">随从</a></p>
+<h2>改变人物立绘</h2>
+<h2>对话</h2>
+<ul>
+<li><code>点击编辑</code></li>
+<li><code>点击“+”按钮添加对话</code></li>
+<li><code>输入说话人物名字</code></li>
+<li><code>输入说话内容</code></li>
+<li><code>输入配音音频文件名（可选）</code></li>
+<li><code>输入自动跳过时间（不填则为鼠标点击/空格跳过）</code></li>
+<li><code>输入特殊立绘图片名（可选）</code></li>
+</ul>
+<h2>展示图片</h2>
+<p>展示图片，点击跳过</p>
+<h2>展示背景</h2>
+<p>展示一张图片，只能被<a href="#%E7%A7%BB%E9%99%A4%E8%83%8C%E6%99%AF">移除背景</a>移除。</p>
+<h2>移除背景</h2>
+<p>移除当前展示的背景。</p>
+<h2>更换BGM</h2>
+<p>不填为停止播放当前BGM</p>
+<h2>交易</h2>
+<blockquote>
+<p>交易中购买物品需支付等于物品价值的金钱，出售则获得物品价值80%的金钱</p>
+</blockquote>
+<h2>获得金钱</h2>
+<p>某个<a href="#%E4%BA%BA%E7%89%A9">人物</a>获得金钱</p>
+<h2>获得物品</h2>
+<p>某个<a href="#%E4%BA%BA%E7%89%A9">人物</a>获得<a href="#%E7%89%A9%E5%93%81">物品</a></p>
+<h2>失去物品</h2>
+<p>某个<a href="#%E4%BA%BA%E7%89%A9">人物</a>失去<a href="#%E7%89%A9%E5%93%81">物品</a></p>
+<h2>获得并装备物品</h2>
+<p>某个<a href="#%E4%BA%BA%E7%89%A9">人物</a>获得并装备<a href="#%E7%89%A9%E5%93%81">物品</a>，如果装备槽位已有装备，则旧装备放回背包中</p>
+<h2>停止装备物品</h2>
+<p>某个<a href="#%E4%BA%BA%E7%89%A9">人物</a>停止装备<a href="#%E7%89%A9%E5%93%81">物品</a>，并放回背包中</p>
+<h2>交付金钱物品</h2>
+<p>请求主角交付金钱或物品， 成功或失败都可激活剧目</p>
+<h2>战斗</h2>
+<p>展开<a href="#%E6%88%98%E6%96%97%E7%B3%BB%E7%BB%9F">战斗</a>，胜利或失败都可激活剧目</p>
+<h2>脱离当前战斗</h2>
+<h2>获得技能</h2>
+<h2>失去技能</h2>
+<h2>援兵</h2>
+<p>给当前进行中的战斗添加援兵</p>
+<h2>切换主角</h2>
+<p>将某个<a href="#%E4%BA%BA%E7%89%A9">人物</a>切换为主角</p>
+<blockquote>
+<p>切换主角后注意保证主角相关剧目的正常触发，见<a href="#%E4%BA%BA%E7%89%A9#%E4%B8%BB%E8%A7%92%E4%BB%A3%E5%8F%B7">主角代号</a></p>
+</blockquote>
+<h2>杀死人物</h2>
+<h2>复活人物</h2>
+<h2>更换地图图片</h2>
+<h2>修改景物图片</h2>
+<p>不填为移除景物当前的图片</p>
+<h2>激活障碍</h2>
+<h2>禁用障碍</h2>
+<h2>移动相机到地点</h2>
+<h2>复位相机</h2>
+<h2>震动相机</h2>
+<h2>轨迹特效</h2>
+<h2>特效</h2>
+<h2>地图上展示图片</h2>
+<h2>抵近目标</h2>
+<br>
+<br>
+<br>
+<br>
+<h1>条件域</h1>
+<p>所有在条件域内的剧目需要满足条件域的条件才能触发. 通常会用在只在某个任务中触发的剧情。</p>
+<h2>创建</h2>
+<ul>
+<li><code>右键菜单</code> -&gt; <code>+条件域</code></li>
+<li>拖动四角来调整大小.</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h1>宏</h1>
+<p><img src="images/marco.png" alt="marco">
+宏是一组可以复用的剧情元素，并且可以传入参数。</p>
+<h2>创建</h2>
+<ul>
+<li><code>右键菜单</code> -&gt; <code>+宏</code></li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h1>人物</h1>
+<p><img src="images/character.png" alt="character"></p>
+<h2>创建</h2>
+<ul>
+<li><code>右键菜单</code> -&gt; <code>+人物</code></li>
+</ul>
+<h2>参数</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>头衔</td>
+<td>人物头衔</td>
+</tr>
+<tr>
+<td>名字</td>
+<td>人物名字，如名字包含*号，*号之后的文本在游戏中不显示（见<a href="#%E9%BE%99%E5%A5%97%E4%BA%BA%E7%89%A9">龙套人物</a>）</td>
+</tr>
+<tr>
+<td>图片文件名</td>
+<td>输入人物图片文件名含后缀</td>
+</tr>
+<tr>
+<td>帽子</td>
+<td>人物所装备的帽子，输入种类为帽子的<a href="#%E7%89%A9%E5%93%81">物品</a>名字</td>
+</tr>
+<tr>
+<td>衣服</td>
+<td>人物所装备的衣服，输入种类为衣服的<a href="#%E7%89%A9%E5%93%81">物品</a>名字</td>
+</tr>
+<tr>
+<td>武器一</td>
+<td>人物所装备的武器，输入种类为武器的[物品]，某些种类的<a href="#%E6%8A%80%E8%83%BD">技能</a>需要装备对应种类的武器才能发动</td>
+</tr>
+<tr>
+<td>武器二</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>物品</td>
+<td>人物背包中的<a href="#%E7%89%A9%E5%93%81">物品</a>名字），使用<code>物品名*4</code>的格式来表示复数</td>
+</tr>
+<tr>
+<td>技能/被动</td>
+<td>人物拥有的<a href="#%E6%8A%80%E8%83%BD">技能</a>/<a href="#%E8%A2%AB%E5%8A%A8">被动</a>名</td>
+</tr>
+<tr>
+<td>随从</td>
+<td>随从人物名字。见<a href="#%E9%9A%8F%E4%BB%8E%E4%BA%BA%E7%89%A9">随从人物</a></td>
+</tr>
+</tbody>
+</table>
+<h2>随从人物</h2>
+<ul>
+<li><a href="#%E6%88%98%E6%96%97">战斗</a>中随从会跟随主人加入战斗。</li>
+<li>为防止循环套娃，随从的随从不会加入战斗。</li>
+</ul>
+<h2>龙套人物</h2>
+<p>有时游戏需要龙套型的人物，比如四个卫兵。他们不需要具体姓名。将四个卫兵的名字设为</p>
+<p>卫兵*1, 卫兵*2, 卫兵*3, 卫兵*4</p>
+<p>在游戏中，他们的显示名字会省略*号和*号后面的内容, 均为卫兵</p>
+<h2>主角代号</h2>
+<p>为保证在<a href="#%E5%88%87%E6%8D%A2%E4%B8%BB%E8%A7%92">切换主角</a>后主角相关剧目的正常触发，可以使用主角代号 <code>--hero--</code> 来指代当前主角名字</p>
+<br>
+<br>
+<br>
+<br>
+<h1>物品</h1>
+<p><img src="images/item.png" alt="item"></p>
+<h2>创建</h2>
+<ul>
+<li><code>右键菜单</code> -&gt; <code>+物品</code></li>
+</ul>
+<h2>参数</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>名字</td>
+<td>物品名字</td>
+</tr>
+<tr>
+<td>图片文件</td>
+<td>图片文件</td>
+</tr>
+<tr>
+<td>物品描述</td>
+<td>游戏中显示的物品描述，如有书信类的物品可直接把内容写在描述中便于玩家阅读</td>
+</tr>
+<tr>
+<td>种类</td>
+<td>物品的种类，包括衣，帽，武器，其他。作用见<a href="#%E4%BA%BA%E7%89%A9">人物</a></td>
+</tr>
+<tr>
+<td>武器种类</td>
+<td>当物品为武器时，可自定义武器的种类（刀剑，暗器等）。<a href="#%E6%8A%80%E8%83%BD">技能</a>可以设置需要装备某种种类的武器才可发动。</td>
+</tr>
+<tr>
+<td>价值</td>
+<td>在<a href="#%E4%BA%A4%E6%98%93">交易</a>中购买此物品所需的金钱</td>
+</tr>
+<tr>
+<td>重量</td>
+<td>在背包中的重量</td>
+</tr>
+<tr>
+<td>不可交易或丢弃</td>
+<td>防止玩家丢失重要的任务道具</td>
+</tr>
+<tr>
+<td>技能/被动</td>
+<td>此物品提供的<a href="#%E6%8A%80%E8%83%BD">技能</a>/<a href="#%E8%A2%AB%E5%8A%A8">被动</a>名字，如果物品为装备，只有在装备它时才能获得它提供的技能/被动</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<br>
+<br>
+<h1>地图</h1>
+<p><img src="images/map.png" alt="map"></p>
+<h2>创建</h2>
+<ul>
+<li><code>右键菜单</code> -&gt; <code>+地图</code></li>
+<li><code>输入地图名字</code></li>
+<li><code>点击编辑</code>： 进入地图编辑器</li>
+<li><code>输入地图图片文件名</code>： 加载地图图片</li>
+<li><code>输入缩放比例</code>： 调整地图图片大小</li>
+<li>放置地点，景物，人物，物品</li>
+<li>勾选层来选择性显示地点，景物，人物，物品</li>
+</ul>
+<h2>地点</h2>
+<h2>景物</h2>
+<p>地图上的图片，可以在游戏过程中使用剧情元素：<a href="#%E4%BF%AE%E6%94%B9%E6%99%AF%E7%89%A9%E5%9B%BE%E7%89%87">修改景物图片</a>动态修改</p>
+<h2>人物</h2>
+<p>地图人物，放置后输入在故事板中定义的人物名。</p>
+<h2>物品</h2>
+<p>物品，分可拾取和不可拾取。</p>
+<h2>障碍物</h2>
+<ul>
+<li>障碍是阻止玩家移动和交互（对话，捡东西）的墙壁，“障碍矮”仅阻止移动不阻止交互。</li>
+<li><code>点击放置好的障碍</code>：命名障碍，便于<a href="#%E5%89%A7%E6%83%85%E5%85%83%E7%B4%A0">剧情元素</a>：<a href="#%E6%BF%80%E6%B4%BB%E9%9A%9C%E7%A2%8D">激活障碍</a>和<a href="#%E7%A6%81%E7%94%A8%E9%9A%9C%E7%A2%8D">禁用障碍</a>禁用或激活。</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h1>技能</h1>
+<p><img src="images/spell.png" alt="spell"></p>
+<h2>创建</h2>
+<ul>
+<li><code>右键菜单</code> -&gt; <code>+技能</code></li>
+</ul>
+<h2>参数</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>名字</td>
+<td>输入技能名字</td>
+</tr>
+<tr>
+<td>技能描述</td>
+<td>游戏中显示的技能描述</td>
+</tr>
+<tr>
+<td>远程</td>
+<td>是否为远程技能，发动远程技能时不会成为<a href="#%E5%89%8D%E6%8E%92">前排</a></td>
+</tr>
+<tr>
+<td>武器种类</td>
+<td>技能所需的武器种类，用户自定义。如不为空则该技能需装备对应种类的<a href="#%E7%89%A9%E5%93%81">物品</a>才可发动。</td>
+</tr>
+<tr>
+<td>技能元素队列</td>
+<td><code>点击+按钮添加技能元素</code>，技能效果由多个技能元素组成，拖动可排序。见<a href="#%E6%8A%80%E8%83%BD%E5%85%83%E7%B4%A0">技能元素</a></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<br>
+<br>
+<h1>被动</h1>
+<p><img src="images/passive.png" alt="passive"></p>
+<h2>创建</h2>
+<ul>
+<li><code>右键菜单</code> -&gt; <code>+被动</code></li>
+</ul>
+<h2>参数</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>名字</td>
+<td>输入被动名字</td>
+</tr>
+<tr>
+<td>被动描述</td>
+<td>游戏中显示的被动描述</td>
+</tr>
+<tr>
+<td>种类</td>
+<td>被动的触发种类</td>
+</tr>
+<tr>
+<td>控制</td>
+<td>拥有带控制被动的人物的行动将被跳过</td>
+</tr>
+<tr>
+<td>伤害补正</td>
+<td>输入小数</td>
+</tr>
+<tr>
+<td>技能元素队列</td>
+<td><code>点击+按钮添加技能元素</code>，技能效果由多个技能元素组成，发动时由上往下依次发动，拖动可排序。见<a href="#%E6%8A%80%E8%83%BD%E5%85%83%E7%B4%A0">技能元素</a></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<br>
+<br>
+<h1>技能元素</h1>
+<p>技能元素由作用对象，条件，效果组成，由上往下依次发动，拖动可排序。</p>
+<h2>对象</h2>
+<ul>
+<li>自身</li>
+<li>单体</li>
+<li>己方群体</li>
+<li>己方群体（除自身）</li>
+<li>敌方群体</li>
+<li>全体</li>
+<li>全体（除自身）</li>
+<li>伤害来源（仅存在于受攻击时触发的被动）</li>
+<li>伤害目标（仅存在于攻击时触发的被动）</li>
+</ul>
+<blockquote>
+<p>群体类目标可设置最大目标数，如最大目标数&lt;目标群体人数则随机从目标群体中抽取=最大目标数的单位作为目标</p>
+</blockquote>
+<h2>条件</h2>
+<p>条件决定了效果是否触发，如不满足则跳过此效果</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>概率（独立）</td>
+<td>触发的概率（小数），不填为0</td>
+</tr>
+<tr>
+<td>概率（互斥）</td>
+<td>触发的概率（小数），在此技能元素内，会于其他概率（互斥）条件互斥，例如：有50%互斥概率造成1伤害，50%互斥概率造成2伤害，则只会有两种结果，造成1伤害和造成2伤害</td>
+</tr>
+<tr>
+<td>拥有被动</td>
+<td>拥有的被动名字</td>
+</tr>
+<tr>
+<td>护甲≥</td>
+<td>护甲量</td>
+</tr>
+<tr>
+<td>内力≥</td>
+<td>内力量</td>
+</tr>
+</tbody>
+</table>
+<h4>条件对象</h4>
+<p>判定条件的对象，包括施法者，目标</p>
+<h4>NOT选项</h4>
+<p>选择之后条件判断会反着来，比如拥有被动a将变为不拥有被动a</p>
+<h2>效果</h2>
+<p>对目标造成的技能效果</p>
+<blockquote>
+<h3>伤害类的技能效果可选择伤害类型</h3>
+<ul>
+<li>物理伤害</li>
+<li>内力伤害</li>
+<li>真实伤害：没有随机波动，无视目标的护甲，也不会触发造成/受到伤害时触发的被动</li>
+</ul>
+<h4>无来源</h4>
+<ul>
+<li>勾选后伤害没有来源，因此不会触发对伤害来源造成的效果</li>
+</ul>
+<h3>轨迹特效，打击特效</h3>
+<p>粒子特效，其中轨迹特效可以添加抛射物的图片（可以自己制作飞刀之类的图片加上去，图片上方为抛射方向）</p>
+</blockquote>
+<h2>例子</h2>
+<p><img src="images/spell.png" alt="技能"></p>
+<br>
+<br>
+<br>
+<br>
+<h1>战斗系统</h1>
+<h2>流程</h2>
+<ol>
+<li>主角和主角的<a href="./character#%E9%9A%8F%E4%BB%8E">随从</a>，友方和友方的<a href="./character#%E9%9A%8F%E4%BB%8E">随从</a>进入战斗，敌人和敌人的<a href="./character#%E9%9A%8F%E4%BB%8E">随从</a>进入战斗</li>
+<li>敌方行动</li>
+<li>友方行动</li>
+<li>己方（玩家）行动</li>
+</ol>
+<h2>友方</h2>
+<p>如果设置了友方人物，友方人物和他的随从会加入玩家一边但不受玩家操控</p>
+<h2>前排</h2>
+<ul>
+<li>前排为战斗中双方位置在前的单位。</li>
+<li>当一个战斗单位发动非远程的<a href="#%E6%8A%80%E8%83%BD">技能</a>时，会成为前排。</li>
+<li>在敌方场上存在前排单位时，单体<a href="#%E6%8A%80%E8%83%BD">技能</a>的目标只能是对方的前排。</li>
+</ul>
+<h2>破防</h2>
+<p>单位防御力为0时无法行动2回合，2回合后恢复防御</p>
+<br>
+<br>
+<br>
+<br>
+<h1>战斗AI</h1>
+<p><img src="images/combatai.png" alt="combatai">
+战斗AI由多个行为单元组成，行动时由上往下依次检测，一旦条件符合就触发该行为定义的技能并停止向下检测，拖动可排序。</p>
+<h2>创建</h2>
+<ul>
+<li><code>右键菜单</code> -&gt; <code>+战斗AI</code></li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h1>客制化与发布</h1>
+<p>更换游戏皮肤，屏蔽编辑器和剧本选择来客制化您的游戏便于发布</p>
+<h2>皮肤系统</h2>
+<h3>游戏UI皮肤</h3>
+<ul>
+<li>进入进入程序文件夹内<code>MushRoomCardRPG_Data/streamingAssets/config/gameSkin</code>文件夹。（程序文件夹路径可在<a href="./storyboard.html#%E7%B4%A0%E6%9D%90%E8%B7%AF%E5%BE%84">素材路径</a>中查看）</li>
+<li>替换文件夹内的图片来更换皮肤(图片名字不变，后缀是jpg或png都可以)</li>
+<li>重新启动游戏</li>
+</ul>
+<blockquote>
+<p>为确保不变形，皮肤图宽高比需和原图一致</p>
+</blockquote>
+<h4>UI对照表</h4>
+<table>
+<thead>
+<tr>
+<th>图片文件名</th>
+<th>描述</th>
+<th>宽高比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>button</td>
+<td>通用按钮</td>
+<td>4 : 1</td>
+</tr>
+<tr>
+<td>card</td>
+<td>物品卡/选项卡面板</td>
+<td>2.5 : 3.5</td>
+</tr>
+<tr>
+<td>clothe</td>
+<td>衣服装备槽</td>
+<td>2.5 : 3.5</td>
+</tr>
+<tr>
+<td>cover</td>
+<td>封面图/载入图</td>
+<td>16 : 9</td>
+</tr>
+<tr>
+<td>dead</td>
+<td>死亡标记</td>
+<td>1 : 2</td>
+</tr>
+<tr>
+<td>def</td>
+<td>防御图标</td>
+<td>1 : 1</td>
+</tr>
+<tr>
+<td>dialog</td>
+<td>对话框</td>
+<td>2160 : 240</td>
+</tr>
+<tr>
+<td>hat</td>
+<td>帽子装备槽</td>
+<td>2.5 : 3.5</td>
+</tr>
+<tr>
+<td>label</td>
+<td>长标签</td>
+<td>8 : 1</td>
+</tr>
+<tr>
+<td>mp</td>
+<td>法力图标</td>
+<td>1 : 1</td>
+</tr>
+<tr>
+<td>panel</td>
+<td>通用面板</td>
+<td>16 : 9</td>
+</tr>
+<tr>
+<td>passive</td>
+<td>被动技能按钮</td>
+<td>4 : 1</td>
+</tr>
+<tr>
+<td>sack</td>
+<td>物品图标</td>
+<td>1 : 1</td>
+</tr>
+<tr>
+<td>spell</td>
+<td>技能图标</td>
+<td>1 : 1</td>
+</tr>
+<tr>
+<td>talk</td>
+<td>对话图标</td>
+<td>1 : 1</td>
+</tr>
+<tr>
+<td>weapon</td>
+<td>武器装备槽</td>
+<td>2.5 : 3.5</td>
+</tr>
+</tbody>
+</table>
+<h4>游戏文字颜色</h4>
+<ul>
+<li>进入进入程序文件夹内<code>MushRoomCardRPG_Data/streamingAssets/config/</code>文件夹。（程序文件夹路径可在<a href="./storyboard.html#%E7%B4%A0%E6%9D%90%E8%B7%AF%E5%BE%84">素材路径</a>中查看）</li>
+<li>使用文本编辑器打开<code>config.json</code></li>
+<li>修改 &quot;gameTextColor&quot;: [ R, G, B, A ]
+<ul>
+<li>R为红色，允许值[0, 1]</li>
+<li>G为绿色，允许值[0, 1]</li>
+<li>B为蓝色，允许值[0, 1]</li>
+<li>A为透明度，允许值[0, 1]，0为全透明，1为不透明</li>
+<li>例：&quot;gameTextColor&quot;: [ 1, 0, 0, 0.5 ] 为半透明红色</li>
+</ul>
+</li>
+<li>重新启动游戏</li>
+</ul>
+<h3>编辑器UI皮肤</h3>
+<ul>
+<li>进入进入程序文件夹内<code>MushRoomCardRPG_Data/streamingAssets/config/editorSkin</code>文件夹。（程序文件夹路径可在<a href="./storyboard.html#%E7%B4%A0%E6%9D%90%E8%B7%AF%E5%BE%84">素材路径</a>中查看）</li>
+<li>替换文件夹内的图片来更换皮肤(图片名字不变，后缀是jpg或png都可以)</li>
+<li>重新启动游戏</li>
+</ul>
+<blockquote>
+<p>可以删除editorSkin下的所有UI图片，程序会使用一套默认的深色风格UI</p>
+</blockquote>
+<h4>UI对照表</h4>
+<table>
+<thead>
+<tr>
+<th>图片文件名</th>
+<th>描述</th>
+<th>尺寸/宽高比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>background</td>
+<td>背景</td>
+<td>1 : 1</td>
+</tr>
+<tr>
+<td>button</td>
+<td>通用按钮</td>
+<td>64px * 64px</td>
+</tr>
+<tr>
+<td>cross</td>
+<td>叉</td>
+<td>1 : 1</td>
+</tr>
+<tr>
+<td>panel</td>
+<td>面板</td>
+<td>256px * 256px</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>通用按钮和面板这两个UI因为使用了border，为确保不变形，<strong>像素高度和宽度</strong>需和原图一致</p>
+</blockquote>
+<blockquote>
+<p>背景为重复平铺图片，尺寸越大重复密度越小</p>
+</blockquote>
+<h4>剧本编辑器文字颜色</h4>
+<ul>
+<li>进入进入程序文件夹内<code>MushRoomCardRPG_Data/streamingAssets/config/</code>文件夹。（程序文件夹路径可在<a href="./storyboard.html#%E7%B4%A0%E6%9D%90%E8%B7%AF%E5%BE%84">素材路径</a>中查看）</li>
+<li>使用文本编辑器打开<code>config.json</code></li>
+<li>修改 &quot;editorTextColor&quot;: [ R, G, B, A ]
+<ul>
+<li>R为红色，允许值[0, 1]</li>
+<li>G为绿色，允许值[0, 1]</li>
+<li>B为蓝色，允许值[0, 1]</li>
+<li>A为透明度，允许值[0, 1]，0为全透明，1为不透明</li>
+<li>例：&quot;editorTextColor&quot;: [ 1, 0, 0, 0.5 ] 为半透明红色</li>
+</ul>
+</li>
+<li>重新启动游戏</li>
+</ul>
+<h2>屏蔽编辑器</h2>
+<ul>
+<li>进入程序文件夹内<code>MushRoomCardRPG_Data/streamingAssets/config/</code>文件夹</li>
+<li>使用文本编辑器打开<code>config.json</code></li>
+<li>将<code>disableEditor</code>值改为1</li>
+<li>重新启动游戏</li>
+</ul>
+<h2>屏蔽剧本选择</h2>
+<p>如果游戏只有一个剧本，可以屏蔽剧本选择让玩家直接进入存档选择</p>
+<ul>
+<li>把多余的剧本删掉只留下一个需要的剧本</li>
+<li>进入程序文件夹内<code>MushRoomCardRPG_Data/streamingAssets/config/</code>文件夹</li>
+<li>使用文本编辑器打开<code>config.json</code></li>
+<li>将<code>disableScriptPicking</code>值改为1</li>
+<li>重新启动游戏</li>
+</ul>
+<h2>费用和版权</h2>
+<p>发布使用蘑菇牌RPG制作的游戏是免费的，蘑菇牌RPG只是制作工具，不占有使用其制作的游戏的版权</p>
+<br>
+<br>
+<br>
+<br>
+<h1>官方模板剧本</h1>
+<p>官方提供的剧本案例，可以学习参考</p>
+<ul>
+<li>进入进入程序文件夹内<code>MushRoomCardRPG_Data/streamingAssets/template/</code>文件夹。（程序文件夹路径可在<a href="./storyboard.html#%E7%B4%A0%E6%9D%90%E8%B7%AF%E5%BE%84">素材路径</a>中查看）</li>
+<li>将其中的剧本复制到<code>MushRoomCardRPG_Data/streamingAssets/myStories/</code></li>
+</ul>

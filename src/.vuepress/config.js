@@ -1,16 +1,20 @@
 const { description } = require('../../package')
 
 module.exports = {
-  /**
-   * Ref：https://v1.vuepress.vuejs.org/config/#title
-   */
-  title: '蘑菇牌RPG',
-  /**
-   * Ref：https://v1.vuepress.vuejs.org/config/#description
-   */
-  description: description,
-
-  base: '/',
+  locales: {
+    // The key is the path for the locale to be nested under.
+    // As a special case, the default locale can use '/' as its path.
+    '/': {
+      lang: 'en-US', // this will be set as the lang attribute on <html>
+      title: 'Mushroom Card RPG',
+      description: 'Vue-powered Static Site Generator'
+    },
+    '/zh/': {
+      lang: 'zh-CN',
+      title: '蘑菇牌RPG',
+      description: description
+    }
+  },
 
   /**
    * Extra tags to be injected to the page HTML `<head>`
@@ -29,31 +33,45 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
    */
   themeConfig: {
-    repo: '',
-    editLinks: false,
-    docsDir: '',
-    editLinkText: '',
-    lastUpdated: false,
-    sidebarDepth: 2,
-    nav: [
-      {
-        text: '文档',
-        link: '/guide/',
+    locales: {
+      '/': {
+        repo: '',
+        editLinks: false,
+        docsDir: '',
+        editLinkText: '',
+        lastUpdated: false,
+        sidebarDepth: 0,
+        nav: [
+          {
+            text: 'Document',
+            link: '/guide/',
+          },
+          {
+            text: 'Steam',
+            link: 'https://store.steampowered.com/app/1433520/RPG/'
+          }
+        ],
+        sidebar: 'auto'
       },
-      {
-        text: 'Steam',
-        link: 'https://store.steampowered.com/app/1433520/RPG/'
-      }
-    ],
-    sidebar: {
-      '/guide/': [
-        {
-          collapsable: false,
-          children: [
-            '',
-          ]
-        }
-      ],
+      '/zh/': {
+        repo: '',
+        editLinks: false,
+        docsDir: '',
+        editLinkText: '',
+        lastUpdated: false,
+        sidebarDepth: 0,
+        nav: [
+          {
+            text: '文档',
+            link: '/zh/guide/',
+          },
+          {
+            text: 'Steam',
+            link: 'https://store.steampowered.com/app/1433520/RPG/'
+          }
+        ],
+        sidebar: 'auto'
+      },
     }
   },
 

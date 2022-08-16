@@ -1,582 +1,566 @@
-# 蘑菇牌RPG 说明书
+# Mushroom Card RPG Manual
 
 <br>
 
-## 目录
-- [主界面](#主界面)
-- [故事板](#故事板)
-- [剧目](#剧目)
-- [剧情元素](#剧情元素)
-- [条件域](#条件域)
-- [宏](#宏)
-- [人物](#人物)
-- [物品](#物品)
-- [地图](#地图)
-- [技能](#技能)
-- [被动](#被动)
-- [技能元素](#技能元素)
-- [战斗系统](#战斗系统)
-- [战斗AI](#战斗AI)
-- [客制化与发布](#客制化与发布)
-- [官方模板剧本](#官方模板剧本)
-
-<br>
-<br>
-<br>
-<br>
-
-## 主界面
-- `剧本编辑`： 进入故事板编辑剧本
-- `开始游戏`： 游玩编辑好的剧本
+## Content
+- [StroyBoard](#storyboard)
+- [Act](#act)
+- [Act Element](#act-element)
+- [Act Condition region](#act-condition-region)
+- [Marco](#Marco)
+- [Character](#character)
+- [Item](#item)
+- [Map](#map)
+- [Spell](#spell)
+- [Passive](#passive)
+- [Spell Element](#spell-element)
+- [Combat system](#combat-system)
+- [Combat ai](#combat-ai)
+- [Deck](#deck)
+- [Customize and Publish](#customize-and-publish)
+- [Template Script](#template-script)
 
 <br>
 <br>
 <br>
 <br>
 
-## 故事板
+## StoryBoard
 
-### 按键操作
-- `ctrl + 滚轮`： 缩放
-- `鼠标中键拖动`： 拖动故事板
-- `鼠标右键`： 呼出菜单
-- `鼠标左键`： 选中
-- `鼠标左键拖动`： 框选
-- `Ctrl + Z`：撤销
-- `Ctrl + Shift + Z` 或 `Ctrl + Y`：取消撤销
+### Keys
+- `ctrl + scroll`: zoom
+- `mouse mid button`: drag storyboard
+- `right click`: new element menu
+- `left click`: select
+- `left click drag`: multiple selection
+- `Ctrl + Z`: undo
+- `Ctrl + Shift + Z` or `Ctrl + Y`: redo
 
-### 素材路径
-游戏图片/音频素材请放入这个文件夹或它的子文件夹内。
+### Resource Path
+put images and audios resource in this folder.
 
-### 主角名字
-输入游戏主角名字（需有对应的[人物](#人物)在故事板中）
+### Hero Name
+Name of the hero（require corresponding [Character](#character) on StoryBoard）
 
-### 故事板分页
+### StoryBoard Sheet
 
-- 用于细分大的剧本，作用类似Excel中的sheet。
-- 点击"+"按钮新建分页
-- 拖动排序，分页位置越高其中[剧目](#剧目)的[触发优先级](#剧目优先级)越高
-- 分页只是视觉效果，各分页的元素都是互通的
+- Click "+" to create new.
+- Drag to sort, the higher the sheet is, the higher [Act Priority](#Act-Priority) its [Acts](#Act) have.
 
-### 搜索
-- 搜索将显示故事板中某个文案的所有出现位置
-- 点击搜索图标开始搜索，或选中文本后按`ctrl+f`搜索选中的文本
+### Search
+- Search occurrence of certain text
+- short cut，press `ctrl+f` after selecting text
 
 <br>
 <br>
 <br>
 <br>
 
-## 剧目
+## Act
+### Trigger
+Includes talking to character, entering area, character HP=0, etc. If an act is triggered, it will play its act elements.
 
-### 触发方式
-触发方式游戏中是触发剧目所需的方式，包括对话人物，进入地区等
+### Active State
+- Acts are active when game start unless it is connected with an Act Line(see [Act Line](#act-line))
+- Act will go to inactive state after being played, inactive acts cannot be triggered.
 
->剧目触发过一次后不会再次触发（[环形流程](#环形流程)除外）
+### Condition
+- The condition required for the act to trigger, includes self-defined condition, probability, counter≥, own item, own follower.
+- self-defined condition can be activated by [Activate Condition](#activate-condition) and deactivated by [Deactivate Condition](#deactivate-condition).
+- Check the NOT toggle to reverse the true/false of the condition.
 
->人物血量≤和战斗进行到N回合往往需要搭配[条件](#条件)使用，见[战斗中剧情](#战斗中剧情)
+### Act Elements
+- The [act elements](#act-element) to play when the act is triggered.
+- [Act elements](#act-element) play from top to the bottom, drag to sort.
 
-### 条件
-- 剧目触发需满足的条件，包括自定义，概率，计数器≥，人物拥有物品，人物拥有随从
-- 自定义条件可被[剧情元素](#剧情元素)：[激活条件](#激活条件)激活
-- 已激活的自定义条件可被[剧情元素](#剧情元素)：[移除条件](#移除条件)移除
-- 在条件前勾选NOT，表示否定，只有在该条件不成立时才能触发该剧目
+### Act Priority
+- When multiple acts can be triggered at the same time, only the act with the highest priority get triggered.
+- In a single [StoryBoard Sheet](#storyboard-sheet), the act with higher position has higher priority.
+- If there are multiple [StoryBoard Sheets](#storyboard-sheet), the sheet with higher position has higher priority.
 
-### 剧目可激发态
-- 游戏开始时所有没有前置[剧情连线](#剧目连线)的剧目均处于可激发态
-- 剧目在执行后会进入不可激发态，处于不可激发态的剧目无法被触发
+### Act Line
+- Add act element [Activated Act](#activated-act) in act A.
+- Drag a line from the arrow to the left slot of act B.
+- The act B will be in inactive state(cannot be triggered) when game start. It will be activated once [Activated Act](#activated-Act) in act A is played.
 
-### 剧情
-- 此剧目触发后播放的剧情
-- 由剧情元素队列组成，剧情元素包括人物对话，展示图片，战斗等。详见[剧情元素](#剧情元素)
-- 剧情元素由上往下依次播放，拖动可排序
+### && Switch
+- Add act element [Activated Act](#activated-act) in act A.
+- Drag a line from its arrow to the left slot of act C.
+- Add act element [Activated Act](#activated-act) in act B.
+- Drag a line from its arrow to the left slot of act C.
+- Click act C's left slot to turn on the && switch.
+- The act C will be in inactive state(cannot be triggered) when game start. It will be activated when both [Activated Acts](#activated-Act) in act A and B are played.
+- Click act C's left slot again to turn off the && switch.
+- Now the act will be activated when either [Activated Act](#activated-Act) in act A or B is played. 
 
-### 剧目优先级
-当两个不同剧目的触发方式和条件同时被满足时，会触发优先级更高的剧目。
-- 在单个[故事板分页](#故事板分页)中，位置越高的剧目触发优先级越高。
-- 如有多个[故事板分页](#故事板分页)，分页位置越高，其中剧目的触发优先级越高。
+### Act Loop
+- Single act loop
+  - Add act element [Activated Act](#activated-act) in act A.
+  - Drag a line from the arrow to the left slot of act A itself.
+  - Now act A can trigger again and again.
+- Multiple acts loop
+  - Connect multiple acts with [Activated Act](#activated-act) to form a loop.
+  - Create an entrance act c with [Activated Act](#activated-act) inside.
+  - Connect the [Activated Act](#activated-act) in c to the start act of the loop.
+  - Now the loop can be triggered from the entrance and played in a loop.
 
-#### 剧目连线
-- `在一个剧目A中添加剧情元素`[激活剧目](#激活剧目)（或[选项](#选项)等其他有激活剧目箭头的剧情元素）
-- `拖动箭头">"，连接到另一个剧目B左边的接收槽">"`
-- 游戏开始时剧目B将处于[不可激发态](#剧目可激发态)。只有当剧目A的[激活剧目](#激活剧目)执行后剧目B才会进入[可激发态](#剧目可激发态)。
-
-### &&开关
-- `在一个剧目A中添加剧情元素`[激活剧目](#激活剧目)（或[选项](#选项)等其他有激活剧目箭头的剧情元素）
-- `拖动箭头">"，连接到另一个剧目C左边的接收槽">"`
-- `在一个剧目B中添加剧情元素`[激活剧目](#激活剧目)（或[选项](#选项)等其他有激活剧目箭头的剧情元素）
-- `拖动箭头">"，连接到另一个剧目C左边的接收槽">"`
-- `点击剧目C左边的接收槽">"， 打开&&开关`
-- 游戏开始时剧目C将处于[不可激发态](#剧目可激发态)。只有当剧目A和剧目B的[激活剧目](#激活剧目)都执行后剧目C才会进入[可激发态](#剧目可激发态)。
-- `再次点击剧目C左边的接收槽">"， 关闭&&开关`
-- 只要剧目A和剧目B的[激活剧目](#激活剧目)中的任意一个执行，剧目C就会进入[可激发态](#剧目可激发态)。
-
-#### 环形流程
-- 单剧目环：
-  - 剧目内部的剧目连线连接剧目自身的接收槽，该剧目可以反复触发。
-- 多剧目环：
-  - 使用剧目连线将多个剧目连成一个环。
-  - 新建一个入口剧目a并添加剧情元素`[激活剧目](#激活剧目)，将激活剧目的箭头连接到剧目环的起始剧目。
-
-### 底层机制
-- 玩家在游戏中产生可能会触发剧情的交互（比如进入地区，对话）
-- 程序对剧本中所有剧目按[剧目优先级](#剧目优先级)依次检测
-- 如果该剧目 
-  1. 触发方式与玩家此次的交互一致
-  2. 是可激发态（见[剧目可激发态](#剧目可激发态)）
-  3. 剧目条件均已满足
-- 执行该剧目
-- 移除该剧目激活的激活状态
-- 停止向下检测
+### Underlying Mechanism 
+- When the player performs actions may trigger acts (ex: talk to character, enter an area). 
+- The system scans all acts in order of [Act Priority](#act-priority).
+- If  
+  1. Has the right trigger type.
+  2. The act is in [active state](#active-state).
+  3. All of the act's conditions are meet.
+- Play the act's act element.
+- Set the act to be inactive.
+- Stop scanning
 
 <br>
 <br>
 <br>
 <br>
 
-## 剧情元素
+## Act Element
 
-### 激活条件
-激活一个[自定义条件](#条件)
+### Activate Self-defined Condition
+Activate a [self-defined condition](#Condition)
 
-### 移除条件
-移除一个[条件](#条件)
+### Deactivate Self-defined Condition
+Deactivate a [self-defined condition](#Condition)
 
-### 激活剧目
-激活一个[剧目](#剧目)，使其进入可激发态
+### Activate Act
+Activate an [Act](./#Act) see [Active State](#active-state).
+### ±Counter
+± the value of a [counter](#condition)
+### Set Counter
+Set the value of a [counter](#condition)
 
-### 增加计数
-增加一个计数器的值，用于[条件](#条件)判断
+### Options
+Show options for player to choose
+- `click "+" to add option`
+- `enter option name`
+- `connect the option to the act it activates`
 
-### 选项
-给玩家选择的选项
-- `点击编辑`
-- `点击“+”按钮添加选项`
-- `输入选项内容`
-- `使用箭头连接该选项激活的剧目`
+### Teleport Character
+Teleport a [Character](#character) to some [Area](#area)
+>Teleport the hero to switch between maps
 
-### 传送人物
-瞬间传送某个[人物](#人物)到某个[地点](#地点)
->可通过传送主角实现地图间的切换
+### Move Character
+Move a [Character](#character) to some [Area](#area)
+>Character will move to a random point inside the range of the area. Adjust the size of the area to add randomness for the movement.
 
-### 移动人物
-移动某个[人物](#人物)到某个[地点](#地点)，人物和地点需在同一张地图上。
->人物会随机移动到目的地地点范围内的某个点上，因此可以用目的地地点范围的大小来调节移动路径的随机性
+### Character Follow Character
+A [Character](#character) becomes another character's [Follower](#follower)
 
-### 人物跟随人物
-某个[人物](#人物)成为某个人物的[随从](#随从)
+### Character Stop Following Character
+A [Character](#character) stop being another character's [Follower](#follower)
 
-### 人物停止跟随人物
-某个[人物](#人物)停止成为某个人物的[随从](#随从)
+### Change Character Image
 
-### 改变人物立绘
+### Dialogue
+- `click to edit`
+- `click "+" to add new dialogue`
+- `enter speaker name`
+- `enter dialog content`
+- `enter dubbing audio file`
+- `enter auto skip countdown time (click/space to skip if empty)`
+- `special speaker image file (optional)`
 
-### 对话
-- `点击编辑`
-- `点击“+”按钮添加对话`
-- `输入说话人物名字`
-- `输入说话内容`
-- `输入配音音频文件名（可选）`
-- `输入自动跳过时间（不填则为鼠标点击/空格跳过）`
-- `输入特殊立绘图片名（可选）`
+### Show Image
+Click/space to skip
 
-### 展示图片
-展示图片，点击跳过
+### Show background
+Show background, can only be skipped by Remove Background
 
-### 展示背景
-展示一张图片，只能被[移除背景](#移除背景)移除。
+### Remove Background
+Remove current background
 
-### 移除背景
-移除当前展示的背景。
+### BGM
+If leave empty, stop playing current BGM
 
-### 更换BGM
-不填为停止播放当前BGM
+### Transaction
+>hero sales item with 80% original item value
 
-### 交易
->交易中购买物品需支付等于物品价值的金钱，出售则获得物品价值80%的金钱
+### Gain Money
+A [Character](#character) gain money
+### Gain Item
+A [Character](#character) gain [Item](#item)
+### Loss Item
+A [Character](#character) loss [Item](#item)
+### Gain and equip item
+A [Character](#character) gain and equip [Item](#item)
+### Stop equip to item
+A [Character](#character) stop to equip [Item](#item)
+### Give Money/Item
+Hero give out money/item to a character. Success and failing activates act respectively.
+### Combat
+see[Combat](#combat-system). Winning and losing activates act respectively.
 
-### 获得金钱
-某个[人物](#人物)获得金钱
-### 获得物品
-某个[人物](#人物)获得[物品](#物品)
-### 失去物品
-某个[人物](#人物)失去[物品](#物品)
-### 获得并装备物品
-某个[人物](#人物)获得并装备[物品](#物品)，如果装备槽位已有装备，则旧装备放回背包中
-### 停止装备物品
-某个[人物](#人物)停止装备[物品](#物品)，并放回背包中
-### 交付金钱物品
-请求主角交付金钱或物品， 成功或失败都可激活剧目
-### 战斗
-展开[战斗](#战斗系统)，胜利或失败都可激活剧目
-### 脱离当前战斗
-### 获得技能
-### 失去技能
-### 援兵
-给当前进行中的战斗添加援兵
+### Quit current combat
+### Gain Spell
+### Loss Spell
+### Reinforcement
+Reinforcement for current combat.
 
-### 切换主角
-将某个[人物](#人物)切换为主角
->切换主角后注意保证主角相关剧目的正常触发，见[主角代号](#人物#主角代号) 
+### Switch Hero
+Change the hero to be another character
+>Make sure hero related acts trigger correctly after hero switching, see[Hero Code](#hero-code) 
 
-### 杀死人物
-### 复活人物
-### 更换地图图片
-### 修改景物图片
-不填为移除景物当前的图片
-### 激活障碍
-### 禁用障碍
-### 移动相机到地点
-### 复位相机
-### 震动相机
-### 轨迹特效
-### 特效
-### 地图上展示图片
-### 抵近目标
-
-<br>
-<br>
-<br>
-<br>
-
-## 条件域
-所有在条件域内的剧目需要满足条件域的条件才能触发. 通常会用在只在某个任务中触发的剧情。
-### 创建
-- `右键菜单` -> `+条件域`
-- 拖动四角来调整大小.
+### Kill Character
+### Resurrect Character
+### Change Map Image
+### Change Scenery Image
+Remove the scenery image if empty
+### Enable obstacle
+### Disable obstacle
+### Move Camera to Area
+### Restore Camera
+### Shake Camera
+### Trace Effect
+### VFX
+### Image on map
+### Close to target
 
 <br>
 <br>
 <br>
 <br>
 
-## 宏
-宏是一组可以复用的剧情元素，并且可以传入参数。
-
-### 创建
-- `右键菜单` -> `+宏`
+## Act Condition Region
+All acts inside a condition region will have the act conditions of that region. This is useful when you want the act to only be active during a quest.
+### Creation
+- `right click` -> `Act Condition Region`
+- drag four corners to adjust the region.
 
 <br>
 <br>
 <br>
 <br>
 
-## 人物
+## Marco
+Marco is a set of act elements to be reused. It also accepts parameters. Use [Play Marco](#play-marco) to play the marco.
 
-### 创建
-- `右键菜单` -> `+人物`
+### Creation
+- `right click` -> `Marco`
 
-### 参数
-| 参数 | 描述 |
+<br>
+<br>
+<br>
+<br>
+
+## Character
+
+### Creation
+- `right click menu` -> `+Character`
+
+### Parameters
+| Parameter | Description |
 | --- | ----------- |
-| 头衔 | 人物头衔 |
-| 名字 | 人物名字，如名字包含\*号，\*号之后的文本在游戏中不显示（见[龙套人物](#龙套人物)） |
-| 图片文件名 | 输入人物图片文件名含后缀 |
-| 帽子 | 人物所装备的帽子，输入种类为帽子的[物品](#物品)名字 |
-| 衣服 | 人物所装备的衣服，输入种类为衣服的[物品](#物品)名字 |
-| 武器一 | 人物所装备的武器，输入种类为武器的[物品]，某些种类的[技能](#技能)需要装备对应种类的武器才能发动 |
-| 武器二 | 同上 |
-| 物品 | 人物背包中的[物品](#物品)名字），使用`物品名*4`的格式来表示复数 |
-| 技能/被动 | 人物拥有的[技能](#技能)/[被动](#被动)名|
-| 随从 | 随从人物名字。见[随从人物](#随从人物) |
+| Title | character title |
+| Name | character name. If the name contains "\*", the text after * will not be displayed in the game(see [Walk-on](#walk-on)) |
+| Image file | relative path of image in the [Resource Path](#resource-path) |
+| Hat | [item](#item) of type Hat the character equipping |
+| Clothe | [item](#item) of type Clothe the character equipping |
+| Weapon1 | [item](#item) of type Weapon the character equipping |
+| Weapon1 | [item](#item) of type Weapon the character equipping |
+| Item | item in the character's backpack |
+| spell/passive | [spell](#spell) and [passive](#passive) of the character|
+| follower | follower character |
 
-### 随从人物
-- [战斗](#战斗)中随从会跟随主人加入战斗。
-- 为防止循环套娃，随从的随从不会加入战斗。
+### Follower
+- Followers will join [combat](#combat) with their leader.
+- Follower's follower is not supported to prevent dead loop.
 
-### 龙套人物
-有时游戏需要龙套型的人物，比如四个卫兵。他们不需要具体姓名。将四个卫兵的名字设为
+### Walk-on
+Some characters in the story don't have names，for example four guards of the city gate. Set their name to be
 
-卫兵\*1, 卫兵\*2, 卫兵\*3, 卫兵\*4
+guard\*1, guard\*2, guard\*3, guard\*4
 
-在游戏中，他们的显示名字会省略\*号和\*号后面的内容, 均为卫兵
+In the game，text behind\* will be hide, their names will all be "guard" 
 
-### 主角代号
-为保证在[切换主角](#切换主角)后主角相关剧目的正常触发，可以使用主角代号 `--hero--` 来指代当前主角名字
+### Hero code
+To make sure hero related acts trigger correctly after [Switch Hero](#switch-hero), you can use hero code `--hero--` to represent current hero in the game.
 
 <br>
 <br>
 <br>
 <br>
 
-## 物品
+## Item
 
-### 创建
-- `右键菜单` -> `+物品`
+### Creation
+- `Right click menu` -> `Item`
 
-### 参数
-| 参数 | 描述 |
+### Parameters
+| Parameter | description|
 | --- | ----------- |
-| 名字 | 物品名字 |
-| 图片文件 | 图片文件 |
-| 物品描述 | 游戏中显示的物品描述，如有书信类的物品可直接把内容写在描述中便于玩家阅读 |
-| 种类 | 物品的种类，包括衣，帽，武器，其他。作用见[人物](#人物) |
-| 武器种类 | 当物品为武器时，可自定义武器的种类（刀剑，暗器等）。[技能](#技能)可以设置需要装备某种种类的武器才可发动。 |
-| 价值 | 在[交易](#交易)中购买此物品所需的金钱 |
-| 重量 | 在背包中的重量 |
-| 不可交易或丢弃 | 防止玩家丢失重要的任务道具 |
-| 技能/被动 | 此物品提供的[技能](#技能)/[被动](#被动)名字，如果物品为装备，只有在装备它时才能获得它提供的技能/被动|
+| Name | Item name |
+| Image file | relative path of image in the [Resource Path](#resource-path) |
+| Description | Item description |
+| Type | Including Hat, Clothe, Weapon |
+| Weapon Type | If the item is of type weapon, you can define its weapon type for spell's weapon type requirement |
+| Value | value of the item in a [Transaction](#transaction) |
+| weight | weight in the backpack |
+| Cannot be sold or thrown | for important quest item |
+| Spell/Passive | [Spells](#spell)/[Passives](#passive) the item offers. If the item is equipment(hat/clothe/weapon), the character has to equip the item first to get the spell/passive.|
 
 <br>
 <br>
 <br>
 <br>
 
-## 地图
+## Map
 
-### 创建
-- `右键菜单` -> `+地图`
-- `输入地图名字`
-- `点击编辑`： 进入地图编辑器
-- `输入地图图片文件名`： 加载地图图片
-- `输入缩放比例`： 调整地图图片大小
-- 放置地点，景物，人物，物品
-- 勾选层来选择性显示地点，景物，人物，物品
+### Creation
+- `right click` -> `Map`
+- `enter map name`
+- `click edit button`
+- `enter map image path`
+- `set map scale`
+- place character, area, scenery, obstacle, and item
+- check layer toggles to hide/show layers
 
-### 地点
+### Area
 
-### 景物
-地图上的图片，可以在游戏过程中使用剧情元素：[修改景物图片](#修改景物图片)动态修改
+### Scenery
+Extra images on map，can be modified by act element [Change Scenery](#change-scenery)
 
-### 人物
-地图人物，放置后输入在故事板中定义的人物名。
+### Character
+Character on map
 
-### 物品
-物品，分可拾取和不可拾取。
+### Item
+Including pickable and non-pickable
 
-### 障碍物
-
-- 障碍是阻止玩家移动和交互（对话，捡东西）的墙壁，“障碍矮”仅阻止移动不阻止交互。
-- `点击放置好的障碍`：命名障碍，便于[剧情元素](#剧情元素)：[激活障碍](#激活障碍)和[禁用障碍](#禁用障碍)禁用或激活。
+### Obstacle
+- Obstacle stops character moving and interaction(talk to character, pick item) on the map. Short obstacle only stops moving.
+- `click on an obstacle`：give the obstacle a name to be used in act element "Disable Obstacle" and "Enable Obstacle"
 
 <br>
 <br>
 <br>
 <br>
 
-## 技能
+## Spell
 
-### 创建
-- `右键菜单` -> `+技能`
+### Creation
+- `right click menu` -> `spell`
 
-### 参数
-| 参数 | 描述 |
+### Parameters
+| Parameter | description |
 | --- | ----------- |
-| 名字 | 输入技能名字 |
-| 技能描述 | 游戏中显示的技能描述 |
-|远程| 是否为远程技能，发动远程技能时不会成为[前排](#前排) |
-| 武器种类 | 技能所需的武器种类，用户自定义。如不为空则该技能需装备对应种类的[物品](#物品)才可发动。|
-| 技能元素队列 | `点击+按钮添加技能元素`，技能效果由多个技能元素组成，拖动可排序。见[技能元素](#技能元素) |
+| name | spell name |
+| description | description |
+|long-range| If a spell is long-range, the caster won't go to front when casting it. |
+| Required weapon type | If not empty, the character has to equip a weapon of this type to cast the spell|
+| Spell unit list | see [Spell Element](#spell-element), drag to sort. |
 
 <br>
 <br>
 <br>
 <br>
 
-## 被动
+## Passive
 
-### 创建
-- `右键菜单` -> `+被动`
+### Creation
+- `right click menu` -> `passive`
 
-### 参数
-| 参数 | 描述 |
+### Parameters
+| Parameter | description |
 | --- | ----------- |
-| 名字 | 输入被动名字 |
-| 被动描述 | 游戏中显示的被动描述 |
-| 种类 | 被动的触发种类 |
-| 控制 | 拥有带控制被动的人物的行动将被跳过 |
-| 伤害补正 | 输入小数 |
-| 技能元素队列 | `点击+按钮添加技能元素`，技能效果由多个技能元素组成，发动时由上往下依次发动，拖动可排序。见[技能元素](#技能元素) |
+| name | passive name |
+| description | description |
+| Trigger type | including combat start, deal damage, etc |
+| trap | passive mark as trap stop character acting in combat |
+| Extra critical hit rate | Extra critical hit rate the passive provide to the character |
+| damage multiplier | damage multiplier in decimal |
+| Spell unit list | see [Spell Unit](#spell-element), drag to sort. |
 
 <br>
 <br>
 <br>
 <br>
 
-## 技能元素
-技能元素由作用对象，条件，效果组成，由上往下依次发动，拖动可排序。
+## Spell Element
+Spell element includes target, condition, and effect. Play from top to bottom. drag to sort
 
-### 对象
-- 自身
-- 单体
-- 己方群体
-- 己方群体（除自身）
-- 敌方群体
-- 全体
-- 全体（除自身）
-- 伤害来源（仅存在于受攻击时触发的被动）
-- 伤害目标（仅存在于攻击时触发的被动）
+### Target
+- Caster
+- Mono
+- Self team
+- Self team (exclude self)
+- Enemy team in front
+- Enemy team
+- All unit
+- All unit (exclude self)
+- Damage source (in passive triggered be deal damage)
+- Damage target (in passive triggered be deal damage)
 
->群体类目标可设置最大目标数，如最大目标数<目标群体人数则随机从目标群体中抽取=最大目标数的单位作为目标
+### Condition
+If conditions are not meet, skip the effects below it
 
-### 条件
-条件决定了效果是否触发，如不满足则跳过此效果
-
-|类型|参数|
+|Condition Type|Parameter|
 | --- | ----------- |
-|概率（独立）|触发的概率（小数），不填为0|
-|概率（互斥）|触发的概率（小数），在此技能元素内，会于其他概率（互斥）条件互斥，例如：有50%互斥概率造成1伤害，50%互斥概率造成2伤害，则只会有两种结果，造成1伤害和造成2伤害|
-|拥有被动|拥有的被动名字|
-|护甲≥|护甲量|
-|内力≥|内力量|
+|probability|probability(in decimal)|
+|probability(exclusive)|probability(in decimal)，exclusive with other probability(exclusive), ex: 0.5 probability(exclusive) to cause 1 damage, 0.5 probability(exclusive) to cause 2 damage, the spell will either cause 1 damage or cause 2 damage|
+|has passive|passive name|
+|armor≥|value|
+|MP≥|value|
 
-##### 条件对象
-判定条件的对象，包括施法者，目标
+#### Condition Target
+The target for condition including caster and the target of the spell
 
-##### NOT选项
-选择之后条件判断会反着来，比如拥有被动a将变为不拥有被动a
+##### NOT
+Check the NOT toggle to reverse the true/false of the condition.
 
-### 效果
-对目标造成的技能效果
+### Effect
+spell effect
 
->#### 伤害类的技能效果可选择伤害类型
->- 物理伤害
->- 内力伤害
->- 真实伤害：没有随机波动，无视目标的护甲，也不会触发造成/受到伤害时触发的被动
->##### 无来源
->- 勾选后伤害没有来源，因此不会触发对伤害来源造成的效果
->#### 轨迹特效，打击特效
->粒子特效，其中轨迹特效可以添加抛射物的图片（可以自己制作飞刀之类的图片加上去，图片上方为抛射方向）
+>#### Damage type in damage effect
+>- Physical
+>- Magical
+>- Real：real damage won't trigger passives triggered by damage
+>##### No Source
+>- Damage with no source won't trigger passives effects on damage source
+>#### Projectile in trace effect
+>- Add your own image to be the projectile of the trace, the top of the image follows the flying direction.
 
-### 例子
-![技能](images/spell.png)
-
-<br>
-<br>
-<br>
-<br>
-
-## 战斗系统
-
-### 流程
-1. 主角和主角的[随从](./character#随从)，友方和友方的[随从](./character#随从)进入战斗，敌人和敌人的[随从](./character#随从)进入战斗
-2. 敌方行动
-3. 友方行动
-4. 己方（玩家）行动
-
-### 友方
-如果设置了友方人物，友方人物和他的随从会加入玩家一边但不受玩家操控
-
-### 前排
-- 前排为战斗中双方位置在前的单位。
-- 当一个战斗单位发动非远程的[技能](#技能)时，会成为前排。
-- 在敌方场上存在前排单位时，单体[技能](#技能)的目标只能是对方的前排。
-
-### 破防
-单位防御力为0时无法行动2回合，2回合后恢复防御
+### Example
+![技能](../../assets/spell.jpg)
 
 <br>
 <br>
 <br>
 <br>
 
-## 战斗AI
-战斗AI由多个行为单元组成，行动时由上往下依次检测，一旦条件符合就触发该行为定义的技能并停止向下检测，拖动可排序。
+## Combat system
 
-### 创建
-- `右键菜单` -> `+战斗AI`
+### Flow
+1. hero and hero's [followers](#follower) enter combat, ally and ally's [followers](#follower) enter combat, enemy and enemy's [followers](#follower) enter combat
+2. enemy action
+3. ally action
+4. hero action
+
+### Ally
+If there is an ally in the combat, the ally and its followers will join the hero team but not controlled by the player.
+
+### Front
+- When a character cast non-long-range spells, it will go to the front.
+- Spell with target type of Mono can only pick enemy in the front as target unless there is no enemy in the front.
+
+### Armor Breaking
+When character armor reduces to 0, it stops action for 2 turns then recovers armor to default armor value
 
 <br>
 <br>
 <br>
 <br>
 
-## 客制化与发布
-更换游戏皮肤，屏蔽编辑器和剧本选择来客制化您的游戏便于发布
+## Combat AI
+- Consists of ai behaviors.
+- Scans from top to bottom, once triggered, stops scanning. 
+- Drag to sort.
 
-### 皮肤系统
-#### 游戏UI皮肤
-- 进入进入程序文件夹内`MushRoomCardRPG_Data/streamingAssets/config/gameSkin`文件夹。（程序文件夹路径可在[素材路径](./storyboard.html#素材路径)中查看）
-- 替换文件夹内的图片来更换皮肤(图片名字不变，后缀是jpg或png都可以)
-- 重新启动游戏
+### Creation
+- `right click menu` -> `Combat AI`
 
->为确保不变形，皮肤图宽高比需和原图一致
+<br>
+<br>
+<br>
+<br>
 
-##### UI对照表
-| 图片文件名 | 描述 | 宽高比 |
+## Customize and Publish
+Add you own skin to the game ui, hide editor, and script selection to publish your game
+
+### Skin system
+
+#### Game Skin
+- Go to `MushRoomCardRPG_Data/streamingAssets/config/gameSkin` folder under game folder. (You can find its path in [Resource Path](#resource-path))
+- Replace the images inside to change skin(keep the image name same, image format can be both jpg and png)
+- Restart the game
+
+>Keep the aspect ratio of the image to prevent distortion
+
+##### UI Chart
+| Image filename | description| width : height |
 | --------- | ---- | ----- |
-| button | 通用按钮 | 4 : 1 |
-| card | 物品卡/选项卡面板 | 2.5 : 3.5 |
-| clothe | 衣服装备槽 | 2.5 : 3.5 |
-| cover | 封面图/载入图 | 16 : 9 |
-| dead | 死亡标记 | 1 : 2 |
-| def | 防御图标 | 1 : 1 |
-| dialog | 对话框 | 1920 : 240 |
-| hat | 帽子装备槽 | 2.5 : 3.5 |
-| label | 长标签 | 8 : 1 |
-| mp | 法力图标 | 1 : 1 |
-| panel | 通用面板 | 16 : 9 |
-| passive | 被动技能按钮 | 4 : 1 |
-| sack | 物品图标 | 1 : 1 |
-| spell | 技能图标 | 1 : 1 |
-| talk | 对话图标 | 1 : 1 |
-| weapon | 武器装备槽 | 2.5 : 3.5 |
+| button | button | 4 : 1 |
+| card | card panel | 2.5 : 3.5 |
+| clothe | clothe icon | 2.5 : 3.5 |
+| cover | cover image | 16 : 9 |
+| dead | death mark | 1 : 2 |
+| def | armor icon | 1 : 1 |
+| dialog | dialog panel | 2160 : 240 |
+| hat | hat icon | 2.5 : 3.5 |
+| label | label | 8 : 1 |
+| mp | MP icon | 1 : 1 |
+| panel | panel | 16 : 9 |
+| passive | passive button | 4 : 1 |
+| sack | item icon | 1 : 1 |
+| spell | passive button | 1 : 1 |
+| talk | talk icon | 1 : 1 |
+| weapon | weapon icon | 2.5 : 3.5 |
 
-##### 游戏文字颜色
-- 进入进入程序文件夹内`MushRoomCardRPG_Data/streamingAssets/config/`文件夹。（程序文件夹路径可在[素材路径](./storyboard.html#素材路径)中查看）
-- 使用文本编辑器打开`config.json`
-- 修改 "gameTextColor": [ R, G, B, A ]
-    - R为红色，允许值[0, 1]
-    - G为绿色，允许值[0, 1]
-    - B为蓝色，允许值[0, 1]
-    - A为透明度，允许值[0, 1]，0为全透明，1为不透明
-    - 例："gameTextColor": [ 1, 0, 0, 0.5 ] 为半透明红色
-- 重新启动游戏
+##### Set Game Text Color
+- Go to `MushRoomCardRPG_Data/streamingAssets/config/gameSkin` folder under game folder. (You can find its path in [Resource Path](#resource-path))
+- Use notepad to open `config.json`
+- Modify "gameTextColor": [ R, G, B, A ]
+    - R, red, range[0, 1]
+    - G, green, range[0, 1]
+    - B, blue, range[0, 1]
+    - A, transparency, range[0, 1], 0 is complete transparent, 1 is complete opaque
+    - ex："gameTextColor": [ 1, 0, 0, 0.5 ] is semi-transparent red
+- Restart the game
 
-#### 编辑器UI皮肤
-- 进入进入程序文件夹内`MushRoomCardRPG_Data/streamingAssets/config/editorSkin`文件夹。（程序文件夹路径可在[素材路径](./storyboard.html#素材路径)中查看）
-- 替换文件夹内的图片来更换皮肤(图片名字不变，后缀是jpg或png都可以)
-- 重新启动游戏
+#### Editor Skin
+- Go to `MushRoomCardRPG_Data/streamingAssets/config/editorSkin` folder under game folder. (You can find its path in [Resource Path](#resource-path))
+- Replace the images inside to change skin(keep the image name same, image format can be both jpg and png)
+- Restart the game
 
->可以删除editorSkin下的所有UI图片，程序会使用一套默认的深色风格UI
+##### UI Chart
+| Image filename | width : height |
+| --------- | ----- |
+| background | 1 : 1 |
+| button | 64px * 64px |
+| cross | cross | 1 : 1 |
+| panel | 256px * 256px |
 
-##### UI对照表
-| 图片文件名 | 描述 | 尺寸/宽高比 |
-| --------- | ---- | ----- |
-| background | 背景 | 1 : 1 |
-| button | 通用按钮 | 64px * 64px |
-| cross | 叉 | 1 : 1 |
-| panel | 面板 | 256px * 256px |
+>Button and panel should have the same resolution with the original image to display the border correctly.
 
->通用按钮和面板这两个UI因为使用了border，为确保不变形，**像素高度和宽度**需和原图一致
+>Background should be seamless texture
 
->背景为重复平铺图片，尺寸越大重复密度越小
+##### Set Editor Text Color
+- Go to `MushRoomCardRPG_Data/streamingAssets/config/` folder under game folder. (You can find its path in [Resource Path](#resource-path))
+- Use notepad to open `config.json`
+- Modify "editorTextColor": [ R, G, B, A ]
+    - R, red, range[0, 1]
+    - G, green, range[0, 1]
+    - B, blue, range[0, 1]
+    - A, transparency, range[0, 1], 0 is complete transparent, 1 is complete opaque
+    - ex："editorTextColor": [ 1, 0, 0, 0.5 ] is semi-transparent red
+- Restart the game
 
-##### 剧本编辑器文字颜色
-- 进入进入程序文件夹内`MushRoomCardRPG_Data/streamingAssets/config/`文件夹。（程序文件夹路径可在[素材路径](./storyboard.html#素材路径)中查看）
-- 使用文本编辑器打开`config.json`
-- 修改 "editorTextColor": [ R, G, B, A ]
-    - R为红色，允许值[0, 1]
-    - G为绿色，允许值[0, 1]
-    - B为蓝色，允许值[0, 1]
-    - A为透明度，允许值[0, 1]，0为全透明，1为不透明
-    - 例："editorTextColor": [ 1, 0, 0, 0.5 ] 为半透明红色
-- 重新启动游戏
+### Hide Editor
+- Go to `MushRoomCardRPG_Data/streamingAssets/config/` folder under game folder. (You can find its path in [Resource Path](#resource-path))
+- Use notepad to open `config.json`
+- Modify `disableEditor` to be 1
+- Restart the game
 
-### 屏蔽编辑器
-- 进入程序文件夹内`MushRoomCardRPG_Data/streamingAssets/config/`文件夹
-- 使用文本编辑器打开`config.json`
-- 将`disableEditor`值改为1
-- 重新启动游戏
+### Hide Script Selection
+If there is only one script in the game, you can hide it to let the player directly select saving.
+- Go to `MushRoomCardRPG_Data/streamingAssets/config/` folder under game folder. (You can find its path in [Resource Path](#resource-path))
+- Use notepad to open `config.json`
+- Modify `disableScriptPicking` to be 1
+- Restart the game
 
-### 屏蔽剧本选择
-如果游戏只有一个剧本，可以屏蔽剧本选择让玩家直接进入存档选择
-- 把多余的剧本删掉只留下一个需要的剧本
-- 进入程序文件夹内`MushRoomCardRPG_Data/streamingAssets/config/`文件夹
-- 使用文本编辑器打开`config.json`
-- 将`disableScriptPicking`值改为1
-- 重新启动游戏
-
-### 费用和版权
-发布使用蘑菇牌RPG制作的游戏是免费的，蘑菇牌RPG只是制作工具，不占有使用其制作的游戏的版权
+### Copyright
+- You don't need to pay any fee for publishing game made with Mushroom Card RPG. Mushroom Card RPG doesn't claim copyright of games made with it.
 
 <br>
 <br>
 <br>
 <br>
 
-## 官方模板剧本
-官方提供的剧本案例，可以学习参考
-
-- 进入进入程序文件夹内`MushRoomCardRPG_Data/streamingAssets/template/`文件夹。（程序文件夹路径可在[素材路径](./storyboard.html#素材路径)中查看）
-- 将其中的剧本复制到`MushRoomCardRPG_Data/streamingAssets/myStories/`
+## Template Script
+Official Script for Reference
+- Go to `MushRoomCardRPG_Data/streamingAssets/template/` folder under game folder. (You can find its path in [Resource Path](#resource-path))
+- Copy the scripts inside into `MushRoomCardRPG_Data/streamingAssets/myStories/`

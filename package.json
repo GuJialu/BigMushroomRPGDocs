@@ -1,10 +1,10 @@
 {
   "name": "project0Docs",
   "version": "0.0.1",
-  "description": "docs for big-mushroom-rpg",
+  "description": "docs for mushroom-card-rpg",
   "main": "index.js",
   "authors": {
-    "name": "theRealBigMushroom",
+    "name": "mushroomer-stronger",
     "email": ""
   },
   "repository": "/project0Docs",

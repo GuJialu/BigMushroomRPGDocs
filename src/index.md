@@ -2,14 +2,14 @@
 home: true
 heroImage: /logo.png
 tagline: docs for big-mushroom-rpg
-actionText: 开始使用 →
+actionText: Get Start →
 actionLink: /guide/
 features:
-- title: 免费！
-  details: 除免费下载还可在Steam商店购买支持作者（见右上）
-- title: 更先进的RPG制作流水线
-  details: 美术->作曲->编剧，无需任何代码
-- title: 基于Unity引擎
-  details: 除现有战斗系统外将基于Unity开发更多游戏模块
-footer: Made by theRealBigMushroom with ❤️
+- title: Game plot editing visualized 
+  details: Branch, quest, random event...
+- title: Combat editing visualized
+  details: Combat system with zero code
+- title: Based on Unity Engine
+  details: More systems are under development 
+footer: Made by mushroomer stronger with ❤️
 ---
