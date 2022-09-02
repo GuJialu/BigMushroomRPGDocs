@@ -1,1161 +1,1025 @@
 <!DOCTYPE html>
-<html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Mushroom Card RPG Manual</title>
+        <style>
+            html {
+                background-color: tan;
+            }
+    
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+                padding-top: 1em;
+                margin: auto;
+                max-width: 20cm;
+            }
+    
+            /* Reset margin top for elements */
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p,
+            ol,
+            ul,
+            pre {
+                margin-top: 0;
+            }
+    
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-weight: normal;
+                margin-bottom: 0.2em;
+            }
+    
+            #code-csp-warning {
+                position: fixed;
+                top: 0;
+                right: 0;
+                color: white;
+                margin: 16px;
+                text-align: center;
+                font-size: 12px;
+                font-family: sans-serif;
+                background-color: #444444;
+                cursor: pointer;
+                padding: 6px;
+                box-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
+            }
+    
+            #code-csp-warning:hover {
+                text-decoration: none;
+                background-color: #007acc;
+                box-shadow: 2px 2px 2px rgba(0, 0, 0, .25);
+            }
+    
+            body.scrollBeyondLastLine {
+                margin-bottom: calc(100vh - 22px);
+            }
+    
+            body.showEditorSelection .code-line {
+                position: relative;
+            }
+    
+            body.showEditorSelection :not(tr).code-active-line:before,
+            body.showEditorSelection :not(tr).code-line:hover:before {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0;
+                left: -12px;
+                height: 100%;
+            }
+    
+            body.showEditorSelection li.code-active-line:before,
+            body.showEditorSelection li.code-line:hover:before {
+                left: -30px;
+            }
+    
+            ul ul,
+            ul ol,
+            ol ul,
+            ol ol {
+                margin-bottom: 0;
+            }
+    
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+    
+            a {
+                color: #008051;
+                text-decoration: none;
+            }
+    
+            a:hover {
+                text-decoration: underline;
+            }
+    
+            a:focus,
+            input:focus,
+            select:focus,
+            textarea:focus {
+                outline: 1px solid -webkit-focus-ring-color;
+                outline-offset: -1px;
+            }
+    
+            p {
+                margin-bottom: 0.7em;
+            }
+    
+            ul,
+            ol {
+                margin-bottom: 0.7em;
+            }
+    
+            hr {
+                border: 0;
+                height: 2px;
+                border-bottom: 2px solid;
+            }
+    
+            h1 {
+                padding-bottom: 0.3em;
+                line-height: 1.2;
+                border-bottom-width: 1px;
+                border-bottom-style: solid;
+                font-weight: normal;
+            }
+    
+            table {
+                border-collapse: collapse;
+                margin-bottom: 0.7em;
+            }
+    
+            th {
+                text-align: left;
+                border-bottom: 1px solid;
+            }
+    
+            th,
+            td {
+                padding: 5px 10px;
+            }
+    
+            table>tbody>tr+tr>td {
+                border-top: 1px solid;
+            }
+    
+            blockquote {
+                margin: 0 7px 0 5px;
+                padding: 0 16px 0 10px;
+                border-left-width: 5px;
+                border-left-style: solid;
+                border-left-color: #008051;
+            }
+    
+            code {
+                font-family: var(--vscode-editor-font-family, "SF Mono", Monaco, Menlo, Consolas, "Ubuntu Mono", "Liberation Mono", "DejaVu Sans Mono", "Courier New", monospace);
+                font-size: 1em;
+                line-height: 1.357em;
+            }
+    
+            body.wordWrap pre {
+                white-space: pre-wrap;
+            }
+    
+            pre:not(.hljs),
+            pre.hljs code>div {
+                padding: 16px;
+                border-radius: 3px;
+                overflow: auto;
+            }
+    
+            pre code {
+                color: var(--vscode-editor-foreground);
+                tab-size: 4;
+            }
+    
+            .task-list-item {
+                list-style-type: none;
+            }
+    
+            .task-list-item-checkbox {
+                margin-left: -20px;
+                vertical-align: middle;
+            }
+        </style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="mushroom-card-rpg-manual">Mushroom Card RPG Manual</h1>
+<br>
+<h2 id="content">Content</h2>
+<ul>
+<li><a href="#storyboard">StroyBoard</a></li>
+<li><a href="#act">Act</a></li>
+<li><a href="#act-element">Act Element</a></li>
+<li><a href="#act-condition-region">Act Condition region</a></li>
+<li><a href="#Marco">Marco</a></li>
+<li><a href="#character">Character</a></li>
+<li><a href="#item">Item</a></li>
+<li><a href="#map">Map</a></li>
+<li><a href="#skill">Skill</a></li>
+<li><a href="#passive">Passive</a></li>
+<li><a href="#skill-element">Skill Element</a></li>
+<li><a href="#combat-system">Combat system</a></li>
+<li><a href="#combat-ai">Combat ai</a></li>
+<li><a href="#deck">Deck</a></li>
+<li><a href="#customize-and-publish">Customize and Publish</a></li>
+<li><a href="#template-script">Template Script</a></li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h2 id="storyboard">StoryBoard</h2>
+<h3 id="keys">Keys</h3>
+<ul>
+<li><code>ctrl + scroll</code>: zoom</li>
+<li><code>mouse mid button</code>: drag storyboard</li>
+<li><code>right click</code>: new element menu</li>
+<li><code>left click</code>: select</li>
+<li><code>left click drag</code>: multiple selection</li>
+<li><code>Ctrl + Z</code>: undo</li>
+<li><code>Ctrl + Shift + Z</code> or <code>Ctrl + Y</code>: redo</li>
+</ul>
+<h3 id="resource-path">Resource Path</h3>
+<p>put images and audios resource in this folder.</p>
+<h3 id="hero-name">Hero Name</h3>
+<p>Name of the hero（require corresponding <a href="#character">Character</a> on StoryBoard）</p>
+<h3 id="storyboard-sheet">StoryBoard Sheet</h3>
+<ul>
+<li>Click &quot;+&quot; to create new.</li>
+<li>Drag to sort, the higher the sheet is, the higher <a href="#Act-Priority">Act Priority</a> its <a href="#Act">Acts</a> have.</li>
+</ul>
+<h3 id="search">Search</h3>
+<ul>
+<li>Search occurrence of certain text</li>
+<li>short cut，press <code>ctrl+f</code> after selecting text</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h2 id="act">Act</h2>
+<h3 id="trigger">Trigger</h3>
+<p>Includes talking to character, entering area, character HP=0, etc. If an act is triggered, it will play its act elements.</p>
+<h3 id="active-state">Active State</h3>
+<ul>
+<li>Acts are active when game start unless it is connected with an Act Line(see <a href="#act-line">Act Line</a>)</li>
+<li>Act will go to inactive state after being played, inactive acts cannot be triggered.</li>
+</ul>
+<h3 id="condition">Condition</h3>
+<ul>
+<li>The condition required for the act to trigger, includes self-defined condition, probability, counter≥, own item, own follower.</li>
+<li>self-defined condition can be activated by <a href="#activate-condition">Activate Condition</a> and deactivated by <a href="#deactivate-condition">Deactivate Condition</a>.</li>
+<li>Check the NOT toggle to reverse the true/false of the condition.</li>
+</ul>
+<h3 id="act-elements">Act Elements</h3>
+<ul>
+<li>The <a href="#act-element">act elements</a> to play when the act is triggered.</li>
+<li><a href="#act-element">Act elements</a> play from top to the bottom, drag to sort.</li>
+</ul>
+<h3 id="act-priority">Act Priority</h3>
+<ul>
+<li>When multiple acts can be triggered at the same time, only the act with the highest priority get triggered.</li>
+<li>In a single <a href="#storyboard-sheet">StoryBoard Sheet</a>, the act with higher position has higher priority.</li>
+<li>If there are multiple <a href="#storyboard-sheet">StoryBoard Sheets</a>, the sheet with higher position has higher priority.</li>
+</ul>
+<h3 id="act-line">Act Line</h3>
+<ul>
+<li>Add act element <a href="#activated-act">Activated Act</a> in act A.</li>
+<li>Drag a line from the arrow to the left slot of act B.</li>
+<li>The act B will be in inactive state(cannot be triggered) when game start. It will be activated once <a href="#activated-Act">Activated Act</a> in act A is played.</li>
+</ul>
+<h3 id="-switch">&amp;&amp; Switch</h3>
+<ul>
+<li>Add act element <a href="#activated-act">Activated Act</a> in act A.</li>
+<li>Drag a line from its arrow to the left slot of act C.</li>
+<li>Add act element <a href="#activated-act">Activated Act</a> in act B.</li>
+<li>Drag a line from its arrow to the left slot of act C.</li>
+<li>Click act C's left slot to turn on the &amp;&amp; switch.</li>
+<li>The act C will be in inactive state(cannot be triggered) when game start. It will be activated after both <a href="#activated-Act">Activated Acts</a> in act A and B are played.</li>
+<li>Click act C's left slot again to turn off the &amp;&amp; switch.</li>
+<li>Now the act will be activated after either <a href="#activated-Act">Activated Act</a> in act A or B is played.</li>
+</ul>
+<h3 id="act-loop">Act Loop</h3>
+<ul>
+<li>Single act loop
+<ul>
+<li>Add act element <a href="#activated-act">Activated Act</a> in act A.</li>
+<li>Drag a line from the arrow to the left slot of act A itself.</li>
+<li>Now act A can trigger again and again.</li>
+</ul>
+</li>
+<li>Multiple acts loop
+<ul>
+<li>Connect multiple acts with <a href="#activated-act">Activated Act</a> to form a loop.</li>
+<li>Create an entrance act with <a href="#activated-act">Activated Act</a> inside.</li>
+<li>Connect the <a href="#activated-act">Activated Act</a> in entrance act to the start act of the loop.</li>
+<li>Now the loop can be triggered from the entrance and played in a loop.</li>
+</ul>
+</li>
+</ul>
+<h3 id="underlying-mechanism">Underlying Mechanism</h3>
+<ul>
+<li>When the player performs actions may trigger acts (ex: talk to character, enter an area).</li>
+<li>The system scans all acts in order of <a href="#act-priority">Act Priority</a>.</li>
+<li>If
+<ol>
+<li>Has the right trigger type.</li>
+<li>The act is in <a href="#active-state">active state</a>.</li>
+<li>All of the act's conditions are meet.</li>
+</ol>
+</li>
+<li>Play the act's act element.</li>
+<li>Set the act to be inactive.</li>
+<li>Stop scanning</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h2 id="act-element">Act Element</h2>
+<h3 id="activate-self-defined-condition">Activate Self-defined Condition</h3>
+<p>Activate a <a href="#Condition">self-defined condition</a></p>
+<h3 id="deactivate-self-defined-condition">Deactivate Self-defined Condition</h3>
+<p>Deactivate a <a href="#Condition">self-defined condition</a></p>
+<h3 id="activate-act">Activate Act</h3>
+<p>Activate an <a href="./#Act">Act</a> see <a href="#active-state">Active State</a>.</p>
+<h3 id="counter">±Counter</h3>
+<p>± the value of a <a href="#condition">counter</a></p>
+<h3 id="set-counter">Set Counter</h3>
+<p>Set the value of a <a href="#condition">counter</a></p>
+<h3 id="options">Options</h3>
+<p>Show options for player to choose</p>
+<ul>
+<li><code>click &quot;+&quot; to add option</code></li>
+<li><code>enter option name</code></li>
+<li><code>connect the option to the act it activates</code></li>
+</ul>
+<h3 id="teleport-character">Teleport Character</h3>
+<p>Teleport a <a href="#character">Character</a> to some <a href="#area">Area</a></p>
+<blockquote>
+<p>Teleport the hero to switch between maps</p>
+</blockquote>
+<h3 id="move-character">Move Character</h3>
+<p>Move a <a href="#character">Character</a> to some <a href="#area">Area</a></p>
+<blockquote>
+<p>Character will move to a random point inside the range of the area. Adjust the size of the area to add randomness for the movement.</p>
+</blockquote>
+<h3 id="character-follow-character">Character Follow Character</h3>
+<p>A <a href="#character">Character</a> becomes another character's <a href="#follower">Follower</a></p>
+<h3 id="character-stop-following-character">Character Stop Following Character</h3>
+<p>A <a href="#character">Character</a> stop being another character's <a href="#follower">Follower</a></p>
+<h3 id="change-character-image">Change Character Image</h3>
+<h3 id="dialogue">Dialogue</h3>
+<ul>
+<li><code>click to edit</code></li>
+<li><code>click &quot;+&quot; to add new dialogue</code></li>
+<li><code>enter speaker name</code></li>
+<li><code>enter dialog content</code></li>
+<li><code>enter dubbing audio file</code></li>
+<li><code>enter auto skip countdown time (click/space to skip if empty)</code></li>
+<li><code>special speaker image file (optional)</code></li>
+<li><code>press &quot;tab&quot; to switch to next input fields</code></li>
+<li><code>drag portraits to sort</code></li>
+</ul>
+<h3 id="show-image">Show Image</h3>
+<p>Click to skip, or auto skip after seconds, or use <a href="#remove-image">Remove Image</a> to remove.</p>
+<h3 id="remove-image">Remove Image</h3>
+<h3 id="audio">Audio</h3>
+<p>If the audio is BGM, check the bgm toggle to make its volume controlled by BGM volume slider in the game.</p>
+<h3 id="stop-audio">Stop Audio</h3>
+<h3 id="transaction">Transaction</h3>
+<blockquote>
+<p>hero sales item with 80% original item value</p>
+</blockquote>
+<h3 id="gain-money">Gain Money</h3>
+<p>A <a href="#character">Character</a> gain money</p>
+<h3 id="gain-item">Gain Item</h3>
+<p>A <a href="#character">Character</a> gain <a href="#item">Item</a></p>
+<h3 id="loss-item">Loss Item</h3>
+<p>A <a href="#character">Character</a> loss <a href="#item">Item</a></p>
+<h3 id="gain-and-equip-item">Gain and equip item</h3>
+<p>A <a href="#character">Character</a> gain and equip <a href="#item">Item</a></p>
+<h3 id="stop-equip-to-item">Stop equip to item</h3>
+<p>A <a href="#character">Character</a> stop to equip <a href="#item">Item</a></p>
+<h3 id="give-moneyitem">Give Money/Item</h3>
+<p>Hero give out money/item to a character. Success and failing activates act respectively.</p>
+<h3 id="combat">Combat</h3>
+<p>see<a href="#combat-system">Combat</a>. Winning and losing activates act respectively.</p>
+<h3 id="quit-current-combat">Quit current combat</h3>
+<h3 id="gain-skill">Gain Skill</h3>
+<h3 id="loss-skill">Loss Skill</h3>
+<h3 id="reinforcement">Reinforcement</h3>
+<p>Reinforcement for current combat.</p>
+<h3 id="switch-hero">Switch Hero</h3>
+<p>Change the hero to be another character</p>
+<blockquote>
+<p>Make sure hero related acts trigger correctly after hero switching, see<a href="#hero-code">Hero Code</a></p>
+</blockquote>
+<h3 id="kill-character">Kill Character</h3>
+<h3 id="resurrect-character">Resurrect Character</h3>
+<h3 id="change-map-image">Change Map Image</h3>
+<h3 id="change-scenery-image">Change Scenery Image</h3>
+<p>Remove the scenery image if empty</p>
+<h3 id="enable-obstacle">Enable obstacle</h3>
+<h3 id="disable-obstacle">Disable obstacle</h3>
+<h3 id="move-camera-to-area">Move Camera to Area</h3>
+<h3 id="restore-camera">Restore Camera</h3>
+<h3 id="shake-camera">Shake Camera</h3>
+<h3 id="trace-effect">Trace Effect</h3>
+<h3 id="vfx">VFX</h3>
+<h3 id="image-on-map">Image on map</h3>
+<h3 id="close-to-target">Close to target</h3>
+<br>
+<br>
+<br>
+<br>
+<h2 id="act-condition-region">Act Condition Region</h2>
+<p>All acts inside a condition region must satisfy the region's act conditions to execute. This is useful when you want the act to only be active during a quest.</p>
+<h3 id="creation">Creation</h3>
+<ul>
+<li><code>right click</code> -&gt; <code>Act Condition Region</code></li>
+<li>drag four corners to adjust the region.</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h2 id="marco">Marco</h2>
+<p>Marco is a set of act elements to be reused. It also accepts parameters. Use <a href="#play-marco">Play Marco</a> to play the marco.</p>
+<h3 id="creation-1">Creation</h3>
+<ul>
+<li><code>right click</code> -&gt; <code>Marco</code></li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h2 id="character">Character</h2>
+<h3 id="creation-2">Creation</h3>
+<ul>
+<li><code>right click menu</code> -&gt; <code>+Character</code></li>
+</ul>
+<h3 id="parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Title</td>
+<td>character title</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>character name. If the name contains &quot;*&quot;, the text after * will not be displayed in the game(see <a href="#walk-on">Walk-on</a>)</td>
+</tr>
+<tr>
+<td>Image file</td>
+<td>relative path of image in the <a href="#resource-path">Resource Path</a></td>
+</tr>
+<tr>
+<td>Hat</td>
+<td><a href="#item">item</a> of type Hat the character equipping</td>
+</tr>
+<tr>
+<td>Clothe</td>
+<td><a href="#item">item</a> of type Clothe the character equipping</td>
+</tr>
+<tr>
+<td>Weapon1</td>
+<td><a href="#item">item</a> of type Weapon the character equipping</td>
+</tr>
+<tr>
+<td>Weapon1</td>
+<td><a href="#item">item</a> of type Weapon the character equipping</td>
+</tr>
+<tr>
+<td>Item</td>
+<td>item in the character's backpack</td>
+</tr>
+<tr>
+<td>skill/passive</td>
+<td><a href="#skill">skill</a> and <a href="#passive">passive</a> of the character</td>
+</tr>
+<tr>
+<td>follower</td>
+<td>follower character</td>
+</tr>
+</tbody>
+</table>
+<h3 id="follower">Follower</h3>
+<ul>
+<li>Followers will join <a href="#combat">combat</a> with their leader.</li>
+<li>Follower's follower is not supported to prevent dead loop.</li>
+</ul>
+<h3 id="walk-on">Walk-on</h3>
+<p>Some characters in the story don't have names，for example four guards of the city gate. Set their name to be</p>
+<p>guard*1, guard*2, guard*3, guard*4</p>
+<p>In the game，text behind* will be hide, their names will all be &quot;guard&quot;</p>
+<h3 id="hero-code">Hero code</h3>
+<p>To make sure hero related acts trigger correctly after <a href="#switch-hero">Switch Hero</a>, you can use hero code <code>--hero--</code> to represent current hero in the game.</p>
+<br>
+<br>
+<br>
+<br>
+<h2 id="item">Item</h2>
+<h3 id="creation-3">Creation</h3>
+<ul>
+<li><code>Right click menu</code> -&gt; <code>Item</code></li>
+</ul>
+<h3 id="parameters-1">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>Item name</td>
+</tr>
+<tr>
+<td>Image file</td>
+<td>relative path of image in the <a href="#resource-path">Resource Path</a></td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Item description</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>Including Hat, Clothe, Weapon</td>
+</tr>
+<tr>
+<td>Weapon Type</td>
+<td>If the item is of type weapon, you can define its weapon type for skill's weapon type requirement</td>
+</tr>
+<tr>
+<td>Value</td>
+<td>value of the item in a <a href="#transaction">Transaction</a></td>
+</tr>
+<tr>
+<td>weight</td>
+<td>weight in the backpack</td>
+</tr>
+<tr>
+<td>Cannot be sold or thrown</td>
+<td>for important quest item</td>
+</tr>
+<tr>
+<td>Skill/Passive</td>
+<td><a href="#skill">Skills</a>/<a href="#passive">Passives</a> the item offers. If the item is equipment(hat/clothe/weapon), the character has to equip the item first to get the skill/passive.</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<br>
+<br>
+<h2 id="map">Map</h2>
+<h3 id="creation-4">Creation</h3>
+<ul>
+<li><code>right click</code> -&gt; <code>Map</code></li>
+<li><code>enter map name</code></li>
+<li><code>click edit button</code></li>
+<li><code>enter map image path</code></li>
+<li><code>set map scale</code></li>
+<li>place character, area, scenery, obstacle, and item</li>
+<li>check layer toggles to hide/show layers</li>
+</ul>
+<h3 id="area">Area</h3>
+<h3 id="scenery">Scenery</h3>
+<p>Extra images on map，can be modified by act element <a href="#change-scenery">Change Scenery</a></p>
+<h3 id="character-1">Character</h3>
+<p>Character on map</p>
+<h3 id="item-1">Item</h3>
+<p>Including pickable and non-pickable</p>
+<h3 id="obstacle">Obstacle</h3>
+<ul>
+<li>Obstacle stops character moving and interaction(talk to character, pick item) on the map. Short obstacle only stops moving.</li>
+<li><code>click on an obstacle</code>：give the obstacle a name to be used in act element &quot;Disable Obstacle&quot; and &quot;Enable Obstacle&quot;</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h2 id="skill">Skill</h2>
+<h3 id="creation-5">Creation</h3>
+<ul>
+<li><code>right click menu</code> -&gt; <code>skill</code></li>
+</ul>
+<h3 id="parameters-2">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>skill name</td>
+</tr>
+<tr>
+<td>description</td>
+<td>description</td>
+</tr>
+<tr>
+<td>ranged</td>
+<td>If a skill is ranged, the caster won't go to front when casting it.</td>
+</tr>
+<tr>
+<td>Required weapon type</td>
+<td>If not empty, the character has to equip a weapon of this type to cast the skill</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>The number of times the skill repeats</td>
+</tr>
+<tr>
+<td>Skill unit list</td>
+<td>see <a href="#skill-element">Skill Element</a></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<br>
+<br>
+<h2 id="passive">Passive</h2>
+<h3 id="creation-6">Creation</h3>
+<ul>
+<li><code>right click menu</code> -&gt; <code>passive</code></li>
+</ul>
+<h3 id="parameters-3">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>passive name</td>
+</tr>
+<tr>
+<td>description</td>
+<td>description</td>
+</tr>
+<tr>
+<td>Trigger type</td>
+<td>including combat start, deal damage, etc</td>
+</tr>
+<tr>
+<td>trap</td>
+<td>passive mark as trap stop character acting in combat</td>
+</tr>
+<tr>
+<td>critical hit rate</td>
+<td>critical hit rate the passive provide to the character</td>
+</tr>
+<tr>
+<td>damage multiplier</td>
+<td>damage multiplier in decimal, positive is increasing and negative is decreasing</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>The number of times the skill repeats</td>
+</tr>
+<tr>
+<td>skill element list</td>
+<td>see <a href="#skill-element">Skill Element</a></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<br>
+<br>
+<h2 id="skill-element">Skill Element</h2>
+<p>Skill element includes target, condition, and effect. Play from top to bottom. drag to sort</p>
+<h3 id="target">Target</h3>
+<ul>
+<li>Caster</li>
+<li>Mono</li>
+<li>Self team</li>
+<li>Self team (exclude self)</li>
+<li>Enemy team in front</li>
+<li>Enemy team</li>
+<li>All unit</li>
+<li>All unit (exclude self)</li>
+<li>Damage source (in passives triggered by damage)</li>
+<li>Damage target (in passives triggered by damage)</li>
+</ul>
+<h3 id="condition-1">Condition</h3>
+<p>If conditions are not meet, skip the effects below it</p>
+<table>
+<thead>
+<tr>
+<th>Condition Type</th>
+<th>Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>probability</td>
+<td>probability(in decimal)</td>
+</tr>
+<tr>
+<td>probability(exclusive)</td>
+<td>probability(in decimal) exclusive with other probability(exclusive), ex: 0.5 probability(exclusive) to cause 1 damage, 0.5 probability(exclusive) to cause 2 damage, the skill will either cause 1 damage or cause 2 damage</td>
+</tr>
+<tr>
+<td>has passive</td>
+<td>passive name</td>
+</tr>
+<tr>
+<td>posture≥</td>
+<td>value</td>
+</tr>
+<tr>
+<td>MP≥</td>
+<td>value</td>
+</tr>
+<tr>
+<td>Trapped(have passive skills with trap property)</td>
+<td></td>
+</tr>
+<tr>
+<td>is in front</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="condition-target">Condition Target</h4>
+<p>The target for condition includes skill caster and skill target</p>
+<h5 id="not">NOT</h5>
+<p>Check the NOT toggle to reverse the true/false of the condition.</p>
+<h3 id="effect">Effect</h3>
+<p>skill effect</p>
+<blockquote>
+<h4 id="damage-type-in-damage-effect">Damage type in damage effect</h4>
+<ul>
+<li>Physical</li>
+<li>Magic</li>
+<li>Real：real damage won't trigger passive skills</li>
+</ul>
+<h5 id="no-source">No Source</h5>
+<ul>
+<li>Damage with no source won't trigger passives effects on damage source</li>
+</ul>
+<h4 id="projectile-in-trace-effect">Projectile in trace effect</h4>
+<ul>
+<li>Add your own image to be the projectile of the trace, the top of the image follows the flying direction.</li>
+</ul>
+</blockquote>
+<br>
+<br>
+<br>
+<br>
+<h2 id="combat-system">Combat system</h2>
+<h3 id="flow">Flow</h3>
+<ol>
+<li>Hero and hero's <a href="#follower">followers</a> enter combat, ally and ally's <a href="#follower">followers</a> enter combat, enemy and enemy's <a href="#follower">followers</a> enter combat</li>
+<li>enemy action</li>
+<li>ally action</li>
+<li>hero action</li>
+</ol>
+<h3 id="ally">Ally</h3>
+<p>If there is an ally in the combat, the ally and its followers will join the hero team but not controlled by the player.</p>
+<h3 id="front">Front</h3>
+<ul>
+<li>When a character cast non-ranged skills, it will go to the front.</li>
+<li>Skills with target type &quot;Mono&quot; can only pick enemy in the front as target unless there is no enemy in the front.</li>
+</ul>
+<h3 id="posture">Posture</h3>
+<p>Character's posture will take same amount of damage as HP, When character posture reduces to 0, it retreats to the back and cannot action for 1 turn (turn count can be set in the script setting panel).</p>
+<br>
+<br>
+<br>
+<br>
+<h2 id="combat-ai">Combat AI</h2>
+<ul>
+<li>Consists of ai behaviors.</li>
+<li>Scans from top to bottom, once triggered, stops scanning.</li>
+<li>Drag to sort.</li>
+</ul>
+<h3 id="creation-7">Creation</h3>
+<ul>
+<li><code>right click menu</code> -&gt; <code>Combat AI</code></li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h2 id="customize-and-publish">Customize and Publish</h2>
+<p>Add you own skin to the game ui, hide editor, and script selection to publish your game</p>
+<h3 id="game-skin">Game Skin</h3>
+<ul>
+<li>Go to <code>MushRoomCardRPG_Data/streamingAssets/config/gameSkin</code> folder under game folder. (You can find its path in <a href="#resource-path">Resource Path</a>)</li>
+<li>Replace the images inside to change skin(keep the image name same, image format can be both jpg and png)</li>
+<li>Restart the game</li>
+</ul>
+<blockquote>
+<p>Keep the aspect ratio of the image to prevent distortion</p>
+</blockquote>
+<h4 id="ui-chart">UI Chart</h4>
+<table>
+<thead>
+<tr>
+<th>Image filename</th>
+<th>description</th>
+<th>width : height</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>button</td>
+<td>button</td>
+<td>4 : 1</td>
+</tr>
+<tr>
+<td>card</td>
+<td>card panel</td>
+<td>2.5 : 3.5</td>
+</tr>
+<tr>
+<td>clothe</td>
+<td>clothe icon</td>
+<td>2.5 : 3.5</td>
+</tr>
+<tr>
+<td>cover</td>
+<td>cover image</td>
+<td>16 : 9</td>
+</tr>
+<tr>
+<td>dead</td>
+<td>death mark</td>
+<td>1 : 2</td>
+</tr>
+<tr>
+<td>dialog</td>
+<td>dialog panel</td>
+<td>2160 : 240</td>
+</tr>
+<tr>
+<td>hat</td>
+<td>hat icon</td>
+<td>2.5 : 3.5</td>
+</tr>
+<tr>
+<td>label</td>
+<td>label</td>
+<td>8 : 1</td>
+</tr>
+<tr>
+<td>mp</td>
+<td>MP icon</td>
+<td>1 : 1</td>
+</tr>
+<tr>
+<td>panel</td>
+<td>panel</td>
+<td>16 : 9</td>
+</tr>
+<tr>
+<td>passive</td>
+<td>passive skill button</td>
+<td>4 : 1</td>
+</tr>
+<tr>
+<td>skill</td>
+<td>skill button</td>
+<td>4 : 1</td>
+</tr>
+<tr>
+<td>sack</td>
+<td>item icon</td>
+<td>1 : 1</td>
+</tr>
+<tr>
+<td>talk</td>
+<td>talk icon</td>
+<td>1 : 1</td>
+</tr>
+<tr>
+<td>weapon</td>
+<td>weapon icon</td>
+<td>2.5 : 3.5</td>
+</tr>
+</tbody>
+</table>
+<h4 id="set-game-text-color">Set Game Text Color</h4>
+<ul>
+<li>Go to <code>MushRoomCardRPG_Data/streamingAssets/config/gameSkin</code> folder under game folder. (You can find its path in <a href="#resource-path">Resource Path</a>)</li>
+<li>Use notepad to open <code>config.json</code></li>
+<li>Modify &quot;gameTextColor&quot;: [ R, G, B, A ]
+<ul>
+<li>R, red, range[0, 1]</li>
+<li>G, green, range[0, 1]</li>
+<li>B, blue, range[0, 1]</li>
+<li>A, transparency, range[0, 1], 0 is complete transparent, 1 is complete opaque</li>
+<li>ex：&quot;gameTextColor&quot;: [ 1, 0, 0, 0.5 ] is semi-transparent red</li>
+</ul>
+</li>
+<li>Restart the game</li>
+</ul>
+<h4 id="pixel-art">Pixel Art</h4>
+<p>If the images used in game are in pixel style, set filter mode to prevent pixel smoothing out.</p>
+<ul>
+<li>Go to <code>MushRoomCardRPG_Data/streamingAssets/config/gameSkin</code> folder under game folder. (You can find its path in <a href="#resource-path">Resource Path</a>)</li>
+<li>Use notepad to open <code>config.json</code></li>
+<li>Change &quot;pointFilter&quot;: false to &quot;pointFilter&quot;: true</li>
+<li>Restart the game</li>
+</ul>
+<h3 id="editor-skin">Editor Skin</h3>
+<ul>
+<li>Go to <code>MushRoomCardRPG_Data/streamingAssets/config/editorSkin</code> folder under game folder. (You can find its path in <a href="#resource-path">Resource Path</a>)</li>
+<li>Replace the images inside to change skin(keep the image name same, image format can be both jpg and png)</li>
+<li>Restart the game</li>
+</ul>
+<h4 id="ui-chart-1">UI Chart</h4>
+<table>
+<thead>
+<tr>
+<th>Image filename</th>
+<th>width : height</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>background</td>
+<td>1 : 1</td>
+</tr>
+<tr>
+<td>button</td>
+<td>64px * 64px</td>
+</tr>
+<tr>
+<td>cross</td>
+<td>1 : 1</td>
+</tr>
+<tr>
+<td>panel</td>
+<td>256px * 256px</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Button and panel should have the same resolution with the original image to display the border correctly.</p>
+</blockquote>
+<blockquote>
+<p>Background should be seamless tiling texture</p>
+</blockquote>
+<h4 id="set-editor-text-color">Set Editor Text Color</h4>
+<ul>
+<li>Go to <code>MushRoomCardRPG_Data/streamingAssets/config/</code> folder under game folder. (You can find its path in <a href="#resource-path">Resource Path</a>)</li>
+<li>Use notepad to open <code>config.json</code></li>
+<li>Modify &quot;editorTextColor&quot;: [ R, G, B, A ]
+<ul>
+<li>R, red, range[0, 1]</li>
+<li>G, green, range[0, 1]</li>
+<li>B, blue, range[0, 1]</li>
+<li>A, transparency, range[0, 1], 0 is complete transparent, 1 is complete opaque</li>
+<li>ex：&quot;editorTextColor&quot;: [ 1, 0, 0, 0.5 ] is semi-transparent red</li>
+</ul>
+</li>
+<li>Restart the game</li>
+</ul>
+<h3 id="hide-editor">Hide Editor</h3>
+<ul>
+<li>Go to <code>MushRoomCardRPG_Data/streamingAssets/config/</code> folder under game folder. (You can find its path in <a href="#resource-path">Resource Path</a>)</li>
+<li>Use notepad to open <code>config.json</code></li>
+<li>Modify <code>disableEditor</code> to be 1</li>
+<li>Restart the game</li>
+</ul>
+<h3 id="hide-script-selection">Hide Script Selection</h3>
+<p>If there is only one script in the game, you can hide it to let the player directly go to saving page.</p>
+<ul>
+<li>Go to <code>MushRoomCardRPG_Data/streamingAssets/config/</code> folder under game folder. (You can find its path in <a href="#resource-path">Resource Path</a>)</li>
+<li>Use notepad to open <code>config.json</code></li>
+<li>Modify <code>disableScriptPicking</code> to be 1</li>
+<li>Restart the game</li>
+</ul>
+<h3 id="license">License</h3>
+<ul>
+<li>Publishing game made with Mushroom Card RPG is free.</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h2 id="template-script">Template Script</h2>
+<p>Official Script for Reference</p>
+<ul>
+<li>Go to <code>MushRoomCardRPG_Data/streamingAssets/template/</code> folder under game folder. (You can find its path in <a href="#resource-path">Resource Path</a>)</li>
+<li>Copy the scripts inside into <code>MushRoomCardRPG_Data/streamingAssets/myStories/</code></li>
+</ul>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Mushroom Card RPG Manual</title>
-
-    <style>
-        html {
-            background-color: tan;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
-            font-size: 14px;
-            line-height: 1.6;
-            padding-top: 1em;
-            margin: auto;
-            max-width: 20cm;
-        }
-
-        /* Reset margin top for elements */
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        p,
-        ol,
-        ul,
-        pre {
-            margin-top: 0;
-        }
-
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-weight: normal;
-            margin-bottom: 0.2em;
-        }
-
-        #code-csp-warning {
-            position: fixed;
-            top: 0;
-            right: 0;
-            color: white;
-            margin: 16px;
-            text-align: center;
-            font-size: 12px;
-            font-family: sans-serif;
-            background-color: #444444;
-            cursor: pointer;
-            padding: 6px;
-            box-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
-        }
-
-        #code-csp-warning:hover {
-            text-decoration: none;
-            background-color: #007acc;
-            box-shadow: 2px 2px 2px rgba(0, 0, 0, .25);
-        }
-
-        body.scrollBeyondLastLine {
-            margin-bottom: calc(100vh - 22px);
-        }
-
-        body.showEditorSelection .code-line {
-            position: relative;
-        }
-
-        body.showEditorSelection :not(tr).code-active-line:before,
-        body.showEditorSelection :not(tr).code-line:hover:before {
-            content: "";
-            display: block;
-            position: absolute;
-            top: 0;
-            left: -12px;
-            height: 100%;
-        }
-
-        body.showEditorSelection li.code-active-line:before,
-        body.showEditorSelection li.code-line:hover:before {
-            left: -30px;
-        }
-
-        .vscode-light.showEditorSelection .code-active-line:before {
-            border-left: 3px solid rgba(0, 0, 0, 0.15);
-        }
-
-        .vscode-light.showEditorSelection .code-line:hover:before {
-            border-left: 3px solid rgba(0, 0, 0, 0.40);
-        }
-
-        .vscode-light.showEditorSelection .code-line .code-line:hover:before {
-            border-left: none;
-        }
-
-        .vscode-dark.showEditorSelection .code-active-line:before {
-            border-left: 3px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .vscode-dark.showEditorSelection .code-line:hover:before {
-            border-left: 3px solid rgba(255, 255, 255, 0.60);
-        }
-
-        .vscode-dark.showEditorSelection .code-line .code-line:hover:before {
-            border-left: none;
-        }
-
-        .vscode-high-contrast.showEditorSelection .code-active-line:before {
-            border-left: 3px solid rgba(255, 160, 0, 0.7);
-        }
-
-        .vscode-high-contrast.showEditorSelection .code-line:hover:before {
-            border-left: 3px solid rgba(255, 160, 0, 1);
-        }
-
-        .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
-            border-left: none;
-        }
-
-        ul ul,
-        ul ol,
-        ol ul,
-        ol ol {
-            margin-bottom: 0;
-        }
-
-        img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        a {
-            color: #008051;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        a:focus,
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: 1px solid -webkit-focus-ring-color;
-            outline-offset: -1px;
-        }
-
-        p {
-            margin-bottom: 0.7em;
-        }
-
-        ul,
-        ol {
-            margin-bottom: 0.7em;
-        }
-
-        hr {
-            border: 0;
-            height: 2px;
-            border-bottom: 2px solid;
-        }
-
-        h1 {
-            padding-bottom: 0.3em;
-            line-height: 1.2;
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            font-weight: normal;
-        }
-
-        table {
-            border-collapse: collapse;
-            margin-bottom: 0.7em;
-        }
-
-        th {
-            text-align: left;
-            border-bottom: 1px solid;
-        }
-
-        th,
-        td {
-            padding: 5px 10px;
-        }
-
-        table>tbody>tr+tr>td {
-            border-top: 1px solid;
-        }
-
-        blockquote {
-            margin: 0 7px 0 5px;
-            padding: 0 16px 0 10px;
-            border-left-width: 5px;
-            border-left-style: solid;
-        }
-
-        code {
-            font-family: var(--vscode-editor-font-family, "SF Mono", Monaco, Menlo, Consolas, "Ubuntu Mono", "Liberation Mono", "DejaVu Sans Mono", "Courier New", monospace);
-            font-size: 1em;
-            line-height: 1.357em;
-        }
-
-        body.wordWrap pre {
-            white-space: pre-wrap;
-        }
-
-        pre:not(.hljs),
-        pre.hljs code>div {
-            padding: 16px;
-            border-radius: 3px;
-            overflow: auto;
-        }
-
-        pre code {
-            color: var(--vscode-editor-foreground);
-            tab-size: 4;
-        }
-
-        /** Theming */
-
-        .vscode-light pre {
-            background-color: rgba(220, 220, 220, 0.4);
-        }
-
-        .vscode-dark pre {
-            background-color: rgba(10, 10, 10, 0.4);
-        }
-
-        .vscode-high-contrast pre {
-            background-color: var(--vscode-textCodeBlock-background);
-        }
-
-        .vscode-high-contrast h1 {
-            border-color: rgb(0, 0, 0);
-        }
-
-        .vscode-light th {
-            border-color: rgba(0, 0, 0, 0.69);
-        }
-
-        .vscode-dark th {
-            border-color: rgba(255, 255, 255, 0.69);
-        }
-
-        .vscode-light h1,
-        .vscode-light hr,
-        .vscode-light td {
-            border-color: rgba(0, 0, 0, 0.18);
-        }
-
-        .vscode-dark h1,
-        .vscode-dark hr,
-        .vscode-dark td {
-            border-color: rgba(255, 255, 255, 0.18);
-        }
-        .task-list-item {
-            list-style-type: none;
-        }
-
-        .task-list-item-checkbox {
-            margin-left: -20px;
-            vertical-align: middle;
-        }
-    </style>
-
-
-
-</head>
-
-<body class="vscode-body vscode-light">
-    <h1 id="mushroom-card-rpg-manual">Mushroom Card RPG Manual</h1>
-    <br>
-    <h1 id="content">Content</h1>
-    <ul>
-        <li><a href="#storyboard">StroyBoard</a></li>
-        <li><a href="#act">Act</a></li>
-        <li><a href="#act-element">Act Element</a></li>
-        <li><a href="#Marco">Marco</a></li>
-        <li><a href="#character">Character</a></li>
-        <li><a href="#item">Item</a></li>
-        <li><a href="#map">Map</a></li>
-        <li><a href="#spell">Spell</a></li>
-        <li><a href="#passive">Passive</a></li>
-        <li><a href="#spell-element">Spell Element</a></li>
-        <li><a href="#combat-system">Combat system</a></li>
-        <li><a href="#combat-ai">Combat ai</a></li>
-        <li><a href="#deck">Deck</a></li>
-        <li><a href="#customize-and-publish">Customize and Publish</a></li>
-        <li><a href="#template-script">Template Script</a></li>
-    </ul>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1 id="storyboard">StoryBoard</h1>
-    <h2 id="keys">Keys</h2>
-    <ul>
-        <li><code>ctrl + scroll</code>: zoom</li>
-        <li><code>mouse mid button</code>: drag storyboard</li>
-        <li><code>right click</code>: new element menu</li>
-        <li><code>left click</code>: select</li>
-        <li><code>left click drag</code>: multiple selection</li>
-        <li><code>Ctrl + Z</code>: undo</li>
-        <li><code>Ctrl + Shift + Z</code> or <code>Ctrl + Y</code>: redo</li>
-    </ul>
-    <h2 id="resource-path">Resource Path</h2>
-    <p>put images and audios resource in this folder.</p>
-    <h2 id="hero-name">Hero Name</h2>
-    <p>Name of the hero（require corresponding <a href="#character">Character</a> on StoryBoard）</p>
-    <h2 id="storyboard-sheet">StoryBoard Sheet</h2>
-    <ul>
-        <li>Click &quot;+&quot; to create new.</li>
-        <li>Drag to sort, the higher the sheet is, the higher <a href="#Act-Priority">Act Priority</a> its <a
-                href="#Act">Acts</a> have.</li>
-    </ul>
-    <h2 id="search">Search</h2>
-    <ul>
-        <li>Search occurrence of certain text</li>
-        <li>short cut，press <code>ctrl+f</code> after selecting text</li>
-    </ul>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1 id="act">Act</h1>
-    <h2 id="trigger">Trigger</h2>
-    <p>Includes talking to character, entering area, character HP=0, etc. If an act is triggered, it will play its act
-        elements.</p>
-    <h2 id="active-state">Active State</h2>
-    <ul>
-        <li>Acts are active when game start unless it is connected with an Act Line(see <a href="#act-line">Act
-                Line</a>)</li>
-        <li>Act will go to inactive state after being played, inactive acts cannot be triggered.</li>
-    </ul>
-    <h2 id="condition">Condition</h2>
-    <ul>
-        <li>The condition required for the act to trigger, includes self-defined condition, probability, counter≥, own
-            item, own follower.</li>
-        <li>self-defined condition can be activated by <a href="#activate-condition">Activate Condition</a> and
-            deactivated by <a href="#deactivate-condition">Deactivate Condition</a>.</li>
-        <li>Check the NOT toggle to reverse the true/false of the condition.</li>
-    </ul>
-    <h2 id="act-elements">Act Elements</h2>
-    <ul>
-        <li>The <a href="#act-element">act elements</a> to play when the act is triggered.</li>
-        <li><a href="#act-element">Act elements</a> play from top to the bottom, drag to sort.</li>
-    </ul>
-    <h2 id="act-priority">Act Priority</h2>
-    <ul>
-        <li>When multiple acts can be triggered at the same time, only the act with the highest priority get triggered.
-        </li>
-        <li>In a single <a href="#storyboard-sheet">StoryBoard Sheet</a>, the act with higher position has higher
-            priority.</li>
-        <li>If there are multiple <a href="#storyboard-sheet">StoryBoard Sheets</a>, the sheet with higher position has
-            higher priority.</li>
-    </ul>
-    <h2 id="act-line">Act Line</h2>
-    <ul>
-        <li>Add act element <a href="#activated-act">Activated Act</a> in act A.</li>
-        <li>Drag a line from the arrow to the left slot of act B.</li>
-        <li>The act B will be in inactive state(cannot be triggered) when game start. It will be activated once <a
-                href="#activated-Act">Activated Act</a> in act A is played.</li>
-    </ul>
-    <h2 id="act-loop">Act Loop</h2>
-    <ul>
-        <li>Single act loop
-            <ul>
-                <li>Add act element <a href="#activated-act">Activated Act</a> in act A.</li>
-                <li>Drag a line from the arrow to the left slot of act A itself.</li>
-                <li>Now act A can trigger again and again.</li>
-            </ul>
-        </li>
-        <li>Multiple acts loop
-            <ul>
-                <li>Connect multiple acts with <a href="#activated-act">Activated Act</a> to form a loop.</li>
-                <li>Create an entrance act c with <a href="#activated-act">Activated Act</a> inside.</li>
-                <li>Connect the <a href="#activated-act">Activated Act</a> in c to the start act of the loop.</li>
-                <li>Now the loop can be triggered from the entrance and played in a loop.</li>
-            </ul>
-        </li>
-    </ul>
-    <h2 id="underlying-mechanism">Underlying Mechanism</h2>
-    <ul>
-        <li>When the player performs actions may trigger acts (ex: talk to character, enter an area).</li>
-        <li>The system scans all acts in order of <a href="#act-priority">Act Priority</a>.</li>
-        <li>If
-            <ol>
-                <li>Has the right trigger type.</li>
-                <li>The act is in <a href="#active-state">active state</a>.</li>
-                <li>All of the act's conditions are meet.</li>
-            </ol>
-        </li>
-        <li>Play the act's act element.</li>
-        <li>Set the act to be inactive.</li>
-        <li>Stop scanning</li>
-    </ul>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1 id="act-element">Act Element</h1>
-    <h2 id="activate-self-defined-condition">Activate Self-defined Condition</h2>
-    <p>Activate a <a href="#Condition">self-defined condition</a></p>
-    <h2 id="deactivate-self-defined-condition">Deactivate Self-defined Condition</h2>
-    <p>Deactivate a <a href="#Condition">self-defined condition</a></p>
-    <h2 id="activate-act">Activate Act</h2>
-    <p>Activate an <a href="./#Act">Act</a> see <a href="#active-state">Active State</a>.</p>
-    <h2 id="counter">±Counter</h2>
-    <p>± the value of a <a href="#condition">counter</a></p>
-    <h2 id="set-counter">Set Counter</h2>
-    <p>Set the value of a <a href="#condition">counter</a></p>
-    <h2 id="options">Options</h2>
-    <p>Show options for player to choose</p>
-    <ul>
-        <li><code>click &quot;+&quot; to add option</code></li>
-        <li><code>enter option name</code></li>
-        <li><code>connect the option to the act it activates</code></li>
-    </ul>
-    <h2 id="teleport-character">Teleport Character</h2>
-    <p>Teleport a <a href="#character">Character</a> to some <a href="#area">Area</a></p>
-    <blockquote>
-        <p>Teleport the hero to switch between maps</p>
-    </blockquote>
-    <h2 id="move-character">Move Character</h2>
-    <p>Move a <a href="#character">Character</a> to some <a href="#area">Area</a></p>
-    <blockquote>
-        <p>Character will move to a random point inside the range of the area. Adjust the size of the area to add
-            randomness for the movement.</p>
-    </blockquote>
-    <h2 id="character-follow-character">Character Follow Character</h2>
-    <p>A <a href="#character">Character</a> becomes another character's <a href="#follower">Follower</a></p>
-    <h2 id="character-stop-following-character">Character Stop Following Character</h2>
-    <p>A <a href="#character">Character</a> stop being another character's <a href="#follower">Follower</a></p>
-    <h2 id="change-character-image">Change Character Image</h2>
-    <h2 id="dialogue">Dialogue</h2>
-    <ul>
-        <li><code>click to edit</code></li>
-        <li><code>click &quot;+&quot; to add new dialogue</code></li>
-        <li><code>enter speaker name</code></li>
-        <li><code>enter dialog content</code></li>
-        <li><code>enter dubbing audio file</code></li>
-        <li><code>enter auto skip countdown time (click/space to skip if empty)</code></li>
-        <li><code>special speaker image file (optional)</code></li>
-    </ul>
-    <h2 id="show-image">Show Image</h2>
-    <p>Click/space to skip</p>
-    <h2 id="show-background">Show background</h2>
-    <p>Show background, can only be skipped by Remove Background</p>
-    <h2 id="remove-background">Remove Background</h2>
-    <p>Remove current background</p>
-    <h2 id="bgm">BGM</h2>
-    <p>If leave empty, stop playing current BGM</p>
-    <h2 id="transaction">Transaction</h2>
-    <blockquote>
-        <p>hero sales item with 80% original item value</p>
-    </blockquote>
-    <h2 id="gain-money">Gain Money</h2>
-    <p>A <a href="#character">Character</a> gain money</p>
-    <h2 id="gain-item">Gain Item</h2>
-    <p>A <a href="#character">Character</a> gain <a href="#item">Item</a></p>
-    <h2 id="loss-item">Loss Item</h2>
-    <p>A <a href="#character">Character</a> loss <a href="#item">Item</a></p>
-    <h2 id="gain-and-equip-item">Gain and equip item</h2>
-    <p>A <a href="#character">Character</a> gain and equip <a href="#item">Item</a></p>
-    <h2 id="stop-equip-to-item">Stop equip to item</h2>
-    <p>A <a href="#character">Character</a> stop to equip <a href="#item">Item</a></p>
-    <h2 id="give-moneyitem">Give Money/Item</h2>
-    <p>Hero give out money/item to a character. Success and failing activates act respectively.</p>
-    <h2 id="combat">Combat</h2>
-    <p>see<a href="#combat-system">Combat</a>. Winning and losing activates act respectively.</p>
-    <h2 id="quit-current-combat">Quit current combat</h2>
-    <h2 id="gain-spell">Gain Spell</h2>
-    <h2 id="loss-spell">Loss Spell</h2>
-    <h2 id="reinforcement">Reinforcement</h2>
-    <p>Reinforcement for current combat.</p>
-    <h2 id="switch-hero">Switch Hero</h2>
-    <p>Change the hero to be another character</p>
-    <blockquote>
-        <p>Make sure hero related acts trigger correctly after hero switching, see<a href="#hero-code">Hero Code</a></p>
-    </blockquote>
-    <h2 id="kill-character">Kill Character</h2>
-    <h2 id="resurrect-character">Resurrect Character</h2>
-    <h2 id="change-map-image">Change Map Image</h2>
-    <h2 id="change-scenery-image">Change Scenery Image</h2>
-    <p>Remove the scenery image if empty</p>
-    <h2 id="enable-obstacle">Enable obstacle</h2>
-    <h2 id="disable-obstacle">Disable obstacle</h2>
-    <h2 id="move-camera-to-area">Move Camera to Area</h2>
-    <h2 id="restore-camera">Restore Camera</h2>
-    <h2 id="shake-camera">Shake Camera</h2>
-    <h2 id="trace-effect">Trace Effect</h2>
-    <h2 id="vfx">VFX</h2>
-    <h2 id="image-on-map">Image on map</h2>
-    <h2 id="close-to-target">Close to target</h2>
-    <h2 id="show-teammate">Show Teammate</h2>
-    <p>Show hero's follower in the hero's position</p>
-    <h2 id="stop-showing-teammate">Stop Showing Teammate</h2>
-    <p>Stop showing hero's follower in the hero's position</p>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1 id="marco">Marco</h1>
-    <p>Marco is a set of act elements to be reused. It also accepts parameters. Use <a href="#play-marco">Play Marco</a>
-        to play the marco.</p>
-    <h2 id="creation">Creation</h2>
-    <ul>
-        <li><code>right click</code> -&gt; <code>Marco</code></li>
-    </ul>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1 id="character">Character</h1>
-    <h2 id="creation-1">Creation</h2>
-    <ul>
-        <li><code>right click menu</code> -&gt; <code>+Character</code></li>
-    </ul>
-    <h2 id="parameters">Parameters</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Title</td>
-                <td>character title</td>
-            </tr>
-            <tr>
-                <td>Name</td>
-                <td>character name. If the name contains &quot;*&quot;, the text after * will not be displayed in the
-                    game(see <a href="#walk-on">Walk-on</a>)</td>
-            </tr>
-            <tr>
-                <td>Image file</td>
-                <td>relative path of image in the <a href="#resource-path">Resource Path</a></td>
-            </tr>
-            <tr>
-                <td>Hat</td>
-                <td><a href="#item">item</a> of type Hat the character equipping</td>
-            </tr>
-            <tr>
-                <td>Clothe</td>
-                <td><a href="#item">item</a> of type Clothe the character equipping</td>
-            </tr>
-            <tr>
-                <td>Weapon1</td>
-                <td><a href="#item">item</a> of type Weapon the character equipping</td>
-            </tr>
-            <tr>
-                <td>Weapon1</td>
-                <td><a href="#item">item</a> of type Weapon the character equipping</td>
-            </tr>
-            <tr>
-                <td>Item</td>
-                <td>item in the character's backpack</td>
-            </tr>
-            <tr>
-                <td>spell/passive</td>
-                <td><a href="#spell">spell</a> and <a href="#passive">passive</a> of the character</td>
-            </tr>
-            <tr>
-                <td>follower</td>
-                <td>follower character</td>
-            </tr>
-        </tbody>
-    </table>
-    <h2 id="follower">Follower</h2>
-    <ul>
-        <li>Followers will join <a href="#combat">combat</a> with their leader.</li>
-        <li>Follower's follower is not supported to prevent dead loop.</li>
-    </ul>
-    <h2 id="walk-on">Walk-on</h2>
-    <p>Some characters in the story don't have names，for example four guards of the city gate. Set their name to be</p>
-    <p>guard*1, guard*2, guard*3, guard*4</p>
-    <p>In the game，text behind* will be hide, their names will all be &quot;guard&quot;</p>
-    <h2 id="hero-code">Hero code</h2>
-    <p>To make sure hero related acts trigger correctly after <a href="#switch-hero">Switch Hero</a>, you can use hero
-        code <code>--hero--</code> to represent current hero in the game.</p>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1 id="item">Item</h1>
-    <h2 id="creation-2">Creation</h2>
-    <ul>
-        <li><code>Right click menu</code> -&gt; <code>Item</code></li>
-    </ul>
-    <h2 id="parameters-1">Parameters</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Name</td>
-                <td>Item name</td>
-            </tr>
-            <tr>
-                <td>Image file</td>
-                <td>relative path of image in the <a href="#resource-path">Resource Path</a></td>
-            </tr>
-            <tr>
-                <td>Description</td>
-                <td>Item description</td>
-            </tr>
-            <tr>
-                <td>Type</td>
-                <td>Including Hat, Clothe, Weapon</td>
-            </tr>
-            <tr>
-                <td>Weapon Type</td>
-                <td>If the item is of type weapon, you can define its weapon type for spell's weapon type requirement
-                </td>
-            </tr>
-            <tr>
-                <td>Value</td>
-                <td>value of the item in a <a href="#transaction">Transaction</a></td>
-            </tr>
-            <tr>
-                <td>weight</td>
-                <td>weight in the backpack</td>
-            </tr>
-            <tr>
-                <td>Cannot be sold or thrown</td>
-                <td>for important quest item</td>
-            </tr>
-            <tr>
-                <td>Spell/Passive</td>
-                <td><a href="#spell">Spells</a>/<a href="#passive">Passives</a> the item offers. If the item is
-                    equipment(hat/clothe/weapon), the character has to equip the item first to get the spell/passive.
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1 id="map">Map</h1>
-    <h2 id="creation-3">Creation</h2>
-    <ul>
-        <li><code>right click</code> -&gt; <code>Map</code></li>
-        <li><code>enter map name</code></li>
-        <li><code>click edit button</code></li>
-        <li><code>enter map image path</code></li>
-        <li><code>set map scale</code></li>
-        <li>place character, area, scenery, obstacle, and item</li>
-        <li>check layer toggles to hide/show layers</li>
-    </ul>
-    <h2 id="area">Area</h2>
-    <h2 id="scenery">Scenery</h2>
-    <p>Extra images on map，can be modified by act element <a href="#change-scenery">Change Scenery</a></p>
-    <h2 id="character-1">Character</h2>
-    <p>Character on map</p>
-    <h2 id="item-1">Item</h2>
-    <p>Including pickable and non-pickable</p>
-    <h2 id="obstacle">Obstacle</h2>
-    <ul>
-        <li>Obstacle stops character moving and interaction(talk to character, pick item) on the map. Short obstacle
-            only stops moving.</li>
-        <li><code>click on an obstacle</code>：give the obstacle a name to be used in act element &quot;Disable
-            Obstacle&quot; and &quot;Enable Obstacle&quot;</li>
-    </ul>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1 id="spell">Spell</h1>
-    <h2 id="creation-4">Creation</h2>
-    <ul>
-        <li><code>right click menu</code> -&gt; <code>spell</code></li>
-    </ul>
-    <h2 id="parameters-2">Parameters</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>name</td>
-                <td>spell name</td>
-            </tr>
-            <tr>
-                <td>description</td>
-                <td>description</td>
-            </tr>
-            <tr>
-                <td>long-range</td>
-                <td>If a spell is long-range, the caster won't go to front when casting it.</td>
-            </tr>
-            <tr>
-                <td>Required weapon type</td>
-                <td>If not empty, the character has to equip a weapon of this type to cast the spell</td>
-            </tr>
-            <tr>
-                <td>Spell unit list</td>
-                <td>see <a href="#spell-element">Spell Element</a>, drag to sort.</td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1 id="passive">Passive</h1>
-    <h2 id="creation-5">Creation</h2>
-    <ul>
-        <li><code>right click menu</code> -&gt; <code>passive</code></li>
-    </ul>
-    <h2 id="parameters-3">Parameters</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>name</td>
-                <td>passive name</td>
-            </tr>
-            <tr>
-                <td>description</td>
-                <td>description</td>
-            </tr>
-            <tr>
-                <td>Trigger type</td>
-                <td>including combat start, deal damage, etc</td>
-            </tr>
-            <tr>
-                <td>trap</td>
-                <td>passive mark as trap stop character acting in combat</td>
-            </tr>
-            <tr>
-                <td>Extra critical hit rate</td>
-                <td>Extra critical hit rate the passive provide to the character</td>
-            </tr>
-            <tr>
-                <td>damage multiplier</td>
-                <td>damage multiplier in decimal</td>
-            </tr>
-            <tr>
-                <td>Spell unit list</td>
-                <td>see <a href="#spell-element">Spell Unit</a>, drag to sort.</td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1 id="spell-element">Spell Element</h1>
-    <p>Spell element includes target, condition, and effect. Play from top to bottom. drag to sort</p>
-    <h2 id="target">Target</h2>
-    <ul>
-        <li>Caster</li>
-        <li>Mono</li>
-        <li>Self team</li>
-        <li>Self team (exclude self)</li>
-        <li>Enemy team in front</li>
-        <li>Enemy team</li>
-        <li>All unit</li>
-        <li>All unit (exclude self)</li>
-        <li>Damage source (in passive triggered be deal damage)</li>
-        <li>Damage target (in passive triggered be deal damage)</li>
-    </ul>
-    <h2 id="condition-1">Condition</h2>
-    <p>If conditions are not meet, skip the effects below it</p>
-    <table>
-        <thead>
-            <tr>
-                <th>Condition Type</th>
-                <th>Parameter</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>probability</td>
-                <td>probability(in decimal)</td>
-            </tr>
-            <tr>
-                <td>probability(exclusive)</td>
-                <td>probability(in decimal)，exclusive with other probability(exclusive), ex: 0.5 probability(exclusive)
-                    to cause 1 damage, 0.5 probability(exclusive) to cause 2 damage, the spell will either cause 1
-                    damage or cause 2 damage</td>
-            </tr>
-            <tr>
-                <td>has passive</td>
-                <td>passive name</td>
-            </tr>
-            <tr>
-                <td>armor≥</td>
-                <td>value</td>
-            </tr>
-            <tr>
-                <td>MP≥</td>
-                <td>value</td>
-            </tr>
-        </tbody>
-    </table>
-    <h3 id="condition-target">Condition Target</h3>
-    <p>The target for condition including caster and the target of the spell</p>
-    <h4 id="not">NOT</h4>
-    <p>Check the NOT toggle to reverse the true/false of the condition.</p>
-    <h2 id="effect">Effect</h2>
-    <p>spell effect</p>
-    <blockquote>
-        <h3 id="damage-type-in-damage-effect">Damage type in damage effect</h3>
-        <ul>
-            <li>Physical</li>
-            <li>Magical</li>
-            <li>Real：real damage won't trigger passives triggered by damage</li>
-        </ul>
-        <h4 id="no-source">No Source</h4>
-        <ul>
-            <li>Damage with no source won't trigger passives effects on damage source</li>
-        </ul>
-        <h3 id="projectile-in-trace-effect">Projectile in trace effect</h3>
-        <ul>
-            <li>Add your own image to be the projectile of the trace, the top of the image follows the flying direction.
-            </li>
-        </ul>
-    </blockquote>
-    <h2 id="example">Example</h2>
-    <p><img src="file:///d:\repo\assets\spell.jpg" alt="技能"></p>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1 id="combat-system">Combat system</h1>
-    <h2 id="flow">Flow</h2>
-    <ol>
-        <li>hero and hero's <a href="#follower">followers</a> enter combat, ally and ally's <a
-                href="#follower">followers</a> enter combat, enemy and enemy's <a href="#follower">followers</a> enter
-            combat</li>
-        <li>enemy action</li>
-        <li>ally action</li>
-        <li>hero action</li>
-    </ol>
-    <h2 id="ally">Ally</h2>
-    <p>If there is an ally in the combat, the ally and its followers will join the hero team but not controlled by the
-        player.</p>
-    <h2 id="front">Front</h2>
-    <ul>
-        <li>When a character cast non-long-range spells, it will go to the front.</li>
-        <li>Spell with target type of Mono can only pick enemy in the front as target unless there is no enemy in the
-            front.</li>
-    </ul>
-    <h2 id="armor-breaking">Armor Breaking</h2>
-    <p>When character armor reduces to 0, it stops action for 2 turns then recovers armor to default armor value</p>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1 id="combat-ai">Combat AI</h1>
-    <ul>
-        <li>Consists of ai behaviors.</li>
-        <li>Scans from top to bottom, once triggered, stops scanning.</li>
-        <li>Drag to sort.</li>
-    </ul>
-    <h2 id="creation-6">Creation</h2>
-    <ul>
-        <li><code>right click menu</code> -&gt; <code>Combat AI</code></li>
-    </ul>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1 id="deck">Deck</h1>
-    <p>Random Deck of character/area/item, refer it by deck name.</p>
-    <h2 id="creation-7">Creation</h2>
-    <ul>
-        <li><code>right click menu</code> -&gt; <code>Deck</code></li>
-        <li>click +，add character/area/item name and corresponding probability(in decimal)</li>
-    </ul>
-    <h2 id="example-1">Example</h2>
-    <h3 id="random-prize">Random prize</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Deck name: prize</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>crappy sword</td>
-                <td>probability: 0.99</td>
-            </tr>
-            <tr>
-                <td>luxury sword</td>
-                <td>probability: 0.01</td>
-            </tr>
-        </tbody>
-    </table>
-    <p><a href="#act-element">act element</a>：<a href="#gain-item">Gain Item</a> &quot;prize&quot;</p>
-    <ul>
-        <li>When executing this act element, there is 99% probability to get a crappy sword and 1% probability to get a
-            luxury sword</li>
-    </ul>
-    <h3 id="random-enemy">Random Enemy</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Deck name: random enemy</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>slime</td>
-                <td>probability: 0.99</td>
-            </tr>
-            <tr>
-                <td>king slime</td>
-                <td>probability: 0.01</td>
-            </tr>
-        </tbody>
-    </table>
-    <p><a href="#act-element">Act Element</a>：<a href="#Combat">Combat</a> enemy: random enemy</p>
-    <ul>
-        <li>When executing this act element, there is 99% probability to combat with a slime and 1% probability to
-            combat with a king slime</li>
-    </ul>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1 id="customize-and-publish">Customize and Publish</h1>
-    <p>Add you own skin to the game ui, hide editor, and script selection to publish your game</p>
-    <h2 id="skin-system">Skin system</h2>
-    <h3 id="game-skin">Game Skin</h3>
-    <ul>
-        <li>Go to <code>MushRoomCardRPG_Data/streamingAssets/config/gameSkin</code> folder under game folder. (You can
-            find its path in <a href="#resource-path">Resource Path</a>)</li>
-        <li>Replace the images inside to change skin(keep the image name same, image format can be both jpg and png)
-        </li>
-        <li>Restart the game</li>
-    </ul>
-    <blockquote>
-        <p>Keep the aspect ratio of the image to prevent distortion</p>
-    </blockquote>
-    <h4 id="ui-chart">UI Chart</h4>
-    <table>
-        <thead>
-            <tr>
-                <th>Image filename</th>
-                <th>description</th>
-                <th>width : height</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>button</td>
-                <td>button</td>
-                <td>4 : 1</td>
-            </tr>
-            <tr>
-                <td>card</td>
-                <td>card panel</td>
-                <td>2.5 : 3.5</td>
-            </tr>
-            <tr>
-                <td>clothe</td>
-                <td>clothe icon</td>
-                <td>2.5 : 3.5</td>
-            </tr>
-            <tr>
-                <td>cover</td>
-                <td>cover image</td>
-                <td>16 : 9</td>
-            </tr>
-            <tr>
-                <td>dead</td>
-                <td>death mark</td>
-                <td>1 : 2</td>
-            </tr>
-            <tr>
-                <td>def</td>
-                <td>armor icon</td>
-                <td>1 : 1</td>
-            </tr>
-            <tr>
-                <td>dialog</td>
-                <td>dialog panel</td>
-                <td>2160 : 240</td>
-            </tr>
-            <tr>
-                <td>hat</td>
-                <td>hat icon</td>
-                <td>2.5 : 3.5</td>
-            </tr>
-            <tr>
-                <td>label</td>
-                <td>label</td>
-                <td>8 : 1</td>
-            </tr>
-            <tr>
-                <td>mp</td>
-                <td>MP icon</td>
-                <td>1 : 1</td>
-            </tr>
-            <tr>
-                <td>panel</td>
-                <td>panel</td>
-                <td>16 : 9</td>
-            </tr>
-            <tr>
-                <td>passive</td>
-                <td>passive button</td>
-                <td>4 : 1</td>
-            </tr>
-            <tr>
-                <td>sack</td>
-                <td>item icon</td>
-                <td>1 : 1</td>
-            </tr>
-            <tr>
-                <td>spell</td>
-                <td>passive button</td>
-                <td>1 : 1</td>
-            </tr>
-            <tr>
-                <td>talk</td>
-                <td>talk icon</td>
-                <td>1 : 1</td>
-            </tr>
-            <tr>
-                <td>weapon</td>
-                <td>weapon icon</td>
-                <td>2.5 : 3.5</td>
-            </tr>
-        </tbody>
-    </table>
-    <h4 id="set-game-text-color">Set Game Text Color</h4>
-    <ul>
-        <li>Go to <code>MushRoomCardRPG_Data/streamingAssets/config/gameSkin</code> folder under game folder. (You can
-            find its path in <a href="#resource-path">Resource Path</a>)</li>
-        <li>Use notepad to open <code>config.json</code></li>
-        <li>Modify &quot;gameTextColor&quot;: [ R, G, B, A ]
-            <ul>
-                <li>R, red, range[0, 1]</li>
-                <li>G, green, range[0, 1]</li>
-                <li>B, blue, range[0, 1]</li>
-                <li>A, transparency, range[0, 1], 0 is complete transparent, 1 is complete opaque</li>
-                <li>ex：&quot;gameTextColor&quot;: [ 1, 0, 0, 0.5 ] is semi-transparent red</li>
-            </ul>
-        </li>
-        <li>Restart the game</li>
-    </ul>
-    <h3 id="editor-skin">Editor Skin</h3>
-    <ul>
-        <li>Go to <code>MushRoomCardRPG_Data/streamingAssets/config/editorSkin</code> folder under game folder. (You can
-            find its path in <a href="#resource-path">Resource Path</a>)</li>
-        <li>Replace the images inside to change skin(keep the image name same, image format can be both jpg and png)
-        </li>
-        <li>Restart the game</li>
-    </ul>
-    <h4 id="ui-chart-1">UI Chart</h4>
-    <table>
-        <thead>
-            <tr>
-                <th>Image filename</th>
-                <th>width : height</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>background</td>
-                <td>1 : 1</td>
-            </tr>
-            <tr>
-                <td>button</td>
-                <td>64px * 64px</td>
-            </tr>
-            <tr>
-                <td>cross</td>
-                <td>cross</td>
-            </tr>
-            <tr>
-                <td>panel</td>
-                <td>256px * 256px</td>
-            </tr>
-        </tbody>
-    </table>
-    <blockquote>
-        <p>Button and panel should have the same resolution with the original image to display the border correctly.</p>
-    </blockquote>
-    <blockquote>
-        <p>Background should be seamless texture</p>
-    </blockquote>
-    <h4 id="set-editor-text-color">Set Editor Text Color</h4>
-    <ul>
-        <li>Go to <code>MushRoomCardRPG_Data/streamingAssets/config/</code> folder under game folder. (You can find its
-            path in <a href="#resource-path">Resource Path</a>)</li>
-        <li>Use notepad to open <code>config.json</code></li>
-        <li>Modify &quot;editorTextColor&quot;: [ R, G, B, A ]
-            <ul>
-                <li>R, red, range[0, 1]</li>
-                <li>G, green, range[0, 1]</li>
-                <li>B, blue, range[0, 1]</li>
-                <li>A, transparency, range[0, 1], 0 is complete transparent, 1 is complete opaque</li>
-                <li>ex：&quot;editorTextColor&quot;: [ 1, 0, 0, 0.5 ] is semi-transparent red</li>
-            </ul>
-        </li>
-        <li>Restart the game</li>
-    </ul>
-    <h2 id="hide-editor">Hide Editor</h2>
-    <ul>
-        <li>Go to <code>MushRoomCardRPG_Data/streamingAssets/config/</code> folder under game folder. (You can find its
-            path in <a href="#resource-path">Resource Path</a>)</li>
-        <li>Use notepad to open <code>config.json</code></li>
-        <li>Modify <code>disableEditor</code> to be 1</li>
-        <li>Restart the game</li>
-    </ul>
-    <h2 id="hide-script-selection">Hide Script Selection</h2>
-    <p>If there is only one script in the game, you can hide it to let the player directly select saving.</p>
-    <ul>
-        <li>Go to <code>MushRoomCardRPG_Data/streamingAssets/config/</code> folder under game folder. (You can find its
-            path in <a href="#resource-path">Resource Path</a>)</li>
-        <li>Use notepad to open <code>config.json</code></li>
-        <li>Modify <code>disableScriptPicking</code> to be 1</li>
-        <li>Restart the game</li>
-    </ul>
-    <h2 id="copyright">Copyright</h2>
-    <ul>
-        <li>You don't need to pay any fee for publishing game made with Mushroom Card RPG. Mushroom Card RPG doesn't
-            claim copyright of games made with it.</li>
-    </ul>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1 id="template-script">Template Script</h1>
-    <p>Official Script for Reference</p>
-    <ul>
-        <li>Go to <code>MushRoomCardRPG_Data/streamingAssets/template/</code> folder under game folder. (You can find
-            its path in <a href="#resource-path">Resource Path</a>)</li>
-        <li>Copy the scripts inside into <code>MushRoomCardRPG_Data/streamingAssets/myStories/</code></li>
-    </ul>
-
-</body>
-
-</html>
+        
+        
+    </body>
+    </html>

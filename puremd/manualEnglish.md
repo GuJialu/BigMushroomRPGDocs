@@ -11,9 +11,9 @@
 - [Character](#character)
 - [Item](#item)
 - [Map](#map)
-- [Spell](#spell)
+- [Skill](#skill)
 - [Passive](#passive)
-- [Spell Element](#spell-element)
+- [Skill Element](#skill-element)
 - [Combat system](#combat-system)
 - [Combat ai](#combat-ai)
 - [Deck](#deck)
@@ -89,9 +89,9 @@ Includes talking to character, entering area, character HP=0, etc. If an act is 
 - Add act element [Activated Act](#activated-act) in act B.
 - Drag a line from its arrow to the left slot of act C.
 - Click act C's left slot to turn on the && switch.
-- The act C will be in inactive state(cannot be triggered) when game start. It will be activated when both [Activated Acts](#activated-Act) in act A and B are played.
+- The act C will be in inactive state(cannot be triggered) when game start. It will be activated after both [Activated Acts](#activated-Act) in act A and B are played.
 - Click act C's left slot again to turn off the && switch.
-- Now the act will be activated when either [Activated Act](#activated-Act) in act A or B is played. 
+- Now the act will be activated after either [Activated Act](#activated-Act) in act A or B is played. 
 
 ### Act Loop
 - Single act loop
@@ -100,8 +100,8 @@ Includes talking to character, entering area, character HP=0, etc. If an act is 
   - Now act A can trigger again and again.
 - Multiple acts loop
   - Connect multiple acts with [Activated Act](#activated-act) to form a loop.
-  - Create an entrance act c with [Activated Act](#activated-act) inside.
-  - Connect the [Activated Act](#activated-act) in c to the start act of the loop.
+  - Create an entrance act with [Activated Act](#activated-act) inside.
+  - Connect the [Activated Act](#activated-act) in entrance act to the start act of the loop.
   - Now the loop can be triggered from the entrance and played in a loop.
 
 ### Underlying Mechanism 
@@ -165,18 +165,18 @@ A [Character](#character) stop being another character's [Follower](#follower)
 - `enter dubbing audio file`
 - `enter auto skip countdown time (click/space to skip if empty)`
 - `special speaker image file (optional)`
+- `press "tab" to switch to next input fields`
+- `drag portraits to sort`
 
 ### Show Image
-Click/space to skip
+Click to skip, or auto skip after seconds, or use [Remove Image](#remove-image) to remove.
 
-### Show background
-Show background, can only be skipped by Remove Background
+### Remove Image
 
-### Remove Background
-Remove current background
+### Audio
+If the audio is BGM, check the bgm toggle to make its volume controlled by BGM volume slider in the game.
 
-### BGM
-If leave empty, stop playing current BGM
+### Stop Audio
 
 ### Transaction
 >hero sales item with 80% original item value
@@ -197,8 +197,8 @@ Hero give out money/item to a character. Success and failing activates act respe
 see[Combat](#combat-system). Winning and losing activates act respectively.
 
 ### Quit current combat
-### Gain Spell
-### Loss Spell
+### Gain Skill
+### Loss Skill
 ### Reinforcement
 Reinforcement for current combat.
 
@@ -227,7 +227,7 @@ Remove the scenery image if empty
 <br>
 
 ## Act Condition Region
-All acts inside a condition region will have the act conditions of that region. This is useful when you want the act to only be active during a quest.
+All acts inside a condition region must satisfy the region's act conditions to execute. This is useful when you want the act to only be active during a quest.
 ### Creation
 - `right click` -> `Act Condition Region`
 - drag four corners to adjust the region.
@@ -264,7 +264,7 @@ Marco is a set of act elements to be reused. It also accepts parameters. Use [Pl
 | Weapon1 | [item](#item) of type Weapon the character equipping |
 | Weapon1 | [item](#item) of type Weapon the character equipping |
 | Item | item in the character's backpack |
-| spell/passive | [spell](#spell) and [passive](#passive) of the character|
+| skill/passive | [skill](#skill) and [passive](#passive) of the character|
 | follower | follower character |
 
 ### Follower
@@ -298,11 +298,11 @@ To make sure hero related acts trigger correctly after [Switch Hero](#switch-her
 | Image file | relative path of image in the [Resource Path](#resource-path) |
 | Description | Item description |
 | Type | Including Hat, Clothe, Weapon |
-| Weapon Type | If the item is of type weapon, you can define its weapon type for spell's weapon type requirement |
+| Weapon Type | If the item is of type weapon, you can define its weapon type for skill's weapon type requirement |
 | Value | value of the item in a [Transaction](#transaction) |
 | weight | weight in the backpack |
 | Cannot be sold or thrown | for important quest item |
-| Spell/Passive | [Spells](#spell)/[Passives](#passive) the item offers. If the item is equipment(hat/clothe/weapon), the character has to equip the item first to get the spell/passive.|
+| Skill/Passive | [Skills](#skill)/[Passives](#passive) the item offers. If the item is equipment(hat/clothe/weapon), the character has to equip the item first to get the skill/passive.|
 
 <br>
 <br>
@@ -340,19 +340,20 @@ Including pickable and non-pickable
 <br>
 <br>
 
-## Spell
+## Skill
 
 ### Creation
-- `right click menu` -> `spell`
+- `right click menu` -> `skill`
 
 ### Parameters
 | Parameter | description |
 | --- | ----------- |
-| name | spell name |
+| name | skill name |
 | description | description |
-|long-range| If a spell is long-range, the caster won't go to front when casting it. |
-| Required weapon type | If not empty, the character has to equip a weapon of this type to cast the spell|
-| Spell unit list | see [Spell Element](#spell-element), drag to sort. |
+|ranged| If a skill is ranged, the caster won't go to front when casting it. |
+| Required weapon type | If not empty, the character has to equip a weapon of this type to cast the skill|
+|loop|The number of times the skill repeats|
+| Skill unit list | see [Skill Element](#skill-element) |
 
 <br>
 <br>
@@ -371,17 +372,18 @@ Including pickable and non-pickable
 | description | description |
 | Trigger type | including combat start, deal damage, etc |
 | trap | passive mark as trap stop character acting in combat |
-| Extra critical hit rate | Extra critical hit rate the passive provide to the character |
-| damage multiplier | damage multiplier in decimal |
-| Spell unit list | see [Spell Unit](#spell-element), drag to sort. |
+| critical hit rate | critical hit rate the passive provide to the character |
+| damage multiplier | damage multiplier in decimal, positive is increasing and negative is decreasing |
+|loop|The number of times the skill repeats|
+| skill element list | see [Skill Element](#skill-element) |
 
 <br>
 <br>
 <br>
 <br>
 
-## Spell Element
-Spell element includes target, condition, and effect. Play from top to bottom. drag to sort
+## Skill Element
+Skill element includes target, condition, and effect. Play from top to bottom. drag to sort
 
 ### Target
 - Caster
@@ -392,8 +394,8 @@ Spell element includes target, condition, and effect. Play from top to bottom. d
 - Enemy team
 - All unit
 - All unit (exclude self)
-- Damage source (in passive triggered be deal damage)
-- Damage target (in passive triggered be deal damage)
+- Damage source (in passives triggered by damage)
+- Damage target (in passives triggered by damage)
 
 ### Condition
 If conditions are not meet, skip the effects below it
@@ -401,31 +403,30 @@ If conditions are not meet, skip the effects below it
 |Condition Type|Parameter|
 | --- | ----------- |
 |probability|probability(in decimal)|
-|probability(exclusive)|probability(in decimal)，exclusive with other probability(exclusive), ex: 0.5 probability(exclusive) to cause 1 damage, 0.5 probability(exclusive) to cause 2 damage, the spell will either cause 1 damage or cause 2 damage|
+|probability(exclusive)|probability(in decimal) exclusive with other probability(exclusive), ex: 0.5 probability(exclusive) to cause 1 damage, 0.5 probability(exclusive) to cause 2 damage, the skill will either cause 1 damage or cause 2 damage|
 |has passive|passive name|
-|armor≥|value|
+|posture≥|value|
 |MP≥|value|
+|Trapped(have passive skills with trap property)||
+|is in front||
 
 #### Condition Target
-The target for condition including caster and the target of the spell
+The target for condition includes skill caster and skill target
 
 ##### NOT
 Check the NOT toggle to reverse the true/false of the condition.
 
 ### Effect
-spell effect
+skill effect
 
 >#### Damage type in damage effect
 >- Physical
->- Magical
->- Real：real damage won't trigger passives triggered by damage
+>- Magic
+>- Real：real damage won't trigger passive skills
 >##### No Source
 >- Damage with no source won't trigger passives effects on damage source
 >#### Projectile in trace effect
 >- Add your own image to be the projectile of the trace, the top of the image follows the flying direction.
-
-### Example
-![技能](../../assets/spell.jpg)
 
 <br>
 <br>
@@ -435,7 +436,7 @@ spell effect
 ## Combat system
 
 ### Flow
-1. hero and hero's [followers](#follower) enter combat, ally and ally's [followers](#follower) enter combat, enemy and enemy's [followers](#follower) enter combat
+1. Hero and hero's [followers](#follower) enter combat, ally and ally's [followers](#follower) enter combat, enemy and enemy's [followers](#follower) enter combat
 2. enemy action
 3. ally action
 4. hero action
@@ -444,11 +445,11 @@ spell effect
 If there is an ally in the combat, the ally and its followers will join the hero team but not controlled by the player.
 
 ### Front
-- When a character cast non-long-range spells, it will go to the front.
-- Spell with target type of Mono can only pick enemy in the front as target unless there is no enemy in the front.
+- When a character cast non-ranged skills, it will go to the front.
+- Skills with target type "Mono" can only pick enemy in the front as target unless there is no enemy in the front.
 
-### Armor Breaking
-When character armor reduces to 0, it stops action for 2 turns then recovers armor to default armor value
+### Posture
+Character's posture will take same amount of damage as HP, When character posture reduces to 0, it retreats to the back and cannot action for 1 turn (turn count can be set in the script setting panel).
 
 <br>
 <br>
@@ -471,16 +472,14 @@ When character armor reduces to 0, it stops action for 2 turns then recovers arm
 ## Customize and Publish
 Add you own skin to the game ui, hide editor, and script selection to publish your game
 
-### Skin system
-
-#### Game Skin
+### Game Skin
 - Go to `MushRoomCardRPG_Data/streamingAssets/config/gameSkin` folder under game folder. (You can find its path in [Resource Path](#resource-path))
 - Replace the images inside to change skin(keep the image name same, image format can be both jpg and png)
 - Restart the game
 
 >Keep the aspect ratio of the image to prevent distortion
 
-##### UI Chart
+#### UI Chart
 | Image filename | description| width : height |
 | --------- | ---- | ----- |
 | button | button | 4 : 1 |
@@ -488,19 +487,18 @@ Add you own skin to the game ui, hide editor, and script selection to publish yo
 | clothe | clothe icon | 2.5 : 3.5 |
 | cover | cover image | 16 : 9 |
 | dead | death mark | 1 : 2 |
-| def | armor icon | 1 : 1 |
 | dialog | dialog panel | 2160 : 240 |
 | hat | hat icon | 2.5 : 3.5 |
 | label | label | 8 : 1 |
 | mp | MP icon | 1 : 1 |
 | panel | panel | 16 : 9 |
-| passive | passive button | 4 : 1 |
+| passive | passive skill button | 4 : 1 |
+| skill | skill button | 4 : 1 |
 | sack | item icon | 1 : 1 |
-| spell | passive button | 1 : 1 |
 | talk | talk icon | 1 : 1 |
 | weapon | weapon icon | 2.5 : 3.5 |
 
-##### Set Game Text Color
+#### Set Game Text Color
 - Go to `MushRoomCardRPG_Data/streamingAssets/config/gameSkin` folder under game folder. (You can find its path in [Resource Path](#resource-path))
 - Use notepad to open `config.json`
 - Modify "gameTextColor": [ R, G, B, A ]
@@ -511,24 +509,31 @@ Add you own skin to the game ui, hide editor, and script selection to publish yo
     - ex："gameTextColor": [ 1, 0, 0, 0.5 ] is semi-transparent red
 - Restart the game
 
-#### Editor Skin
+#### Pixel Art
+If the images used in game are in pixel style, set filter mode to prevent pixel smoothing out.
+- Go to `MushRoomCardRPG_Data/streamingAssets/config/gameSkin` folder under game folder. (You can find its path in [Resource Path](#resource-path))
+- Use notepad to open `config.json`
+- Change "pointFilter": false to "pointFilter": true
+- Restart the game
+
+### Editor Skin
 - Go to `MushRoomCardRPG_Data/streamingAssets/config/editorSkin` folder under game folder. (You can find its path in [Resource Path](#resource-path))
 - Replace the images inside to change skin(keep the image name same, image format can be both jpg and png)
 - Restart the game
 
-##### UI Chart
+#### UI Chart
 | Image filename | width : height |
 | --------- | ----- |
 | background | 1 : 1 |
 | button | 64px * 64px |
-| cross | cross | 1 : 1 |
+| cross  | 1 : 1 |
 | panel | 256px * 256px |
 
 >Button and panel should have the same resolution with the original image to display the border correctly.
 
->Background should be seamless texture
+>Background should be seamless tiling texture
 
-##### Set Editor Text Color
+#### Set Editor Text Color
 - Go to `MushRoomCardRPG_Data/streamingAssets/config/` folder under game folder. (You can find its path in [Resource Path](#resource-path))
 - Use notepad to open `config.json`
 - Modify "editorTextColor": [ R, G, B, A ]
@@ -546,14 +551,14 @@ Add you own skin to the game ui, hide editor, and script selection to publish yo
 - Restart the game
 
 ### Hide Script Selection
-If there is only one script in the game, you can hide it to let the player directly select saving.
+If there is only one script in the game, you can hide it to let the player directly go to saving page.
 - Go to `MushRoomCardRPG_Data/streamingAssets/config/` folder under game folder. (You can find its path in [Resource Path](#resource-path))
 - Use notepad to open `config.json`
 - Modify `disableScriptPicking` to be 1
 - Restart the game
 
-### Copyright
-- You don't need to pay any fee for publishing game made with Mushroom Card RPG. Mushroom Card RPG doesn't claim copyright of games made with it.
+### License
+- Publishing game made with Mushroom Card RPG is free.
 
 <br>
 <br>
